@@ -11,7 +11,7 @@ const auth = getAuth(firebaseApp);
 function Home( {user} ) {
   return (
     <div>
-      Home
+      Home Develop
 
       { user.rol === "admin" ? <AdminView/> : <UserView/> }
 
