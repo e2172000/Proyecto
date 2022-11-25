@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 
+//importamos estilos desde bootstrap
+import { Container } from "react-bootstrap";
+
+//importamos las pantallas del login y del home
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 
+//importamos desde firebase
 import firebaseApp from "./firebase/credenciales";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
+
+//inicializamos auth y firestore
 const auth = getAuth(firebaseApp);
 
 const firestore = getFirestore(firebaseApp);
+
 
 function App() {
 
   const [user, setUser] = useState(null);
 
+
+  //recibimos la informacion del rol del usuario desde la base de datos
   async function getRoll(uid) {
 
     const docuRef = doc(firestore, `usuarios/${uid}`);
@@ -57,7 +67,9 @@ function setUserFirebase(usuarioFirebase) {
   return (
     <>
     <React.StrictMode>
-      {user ? <Home  user={user} /> : <Login />} 
+      <Container fluid>
+        {user ? <Home  user={user} /> : <Login />} 
+      </Container>
     </React.StrictMode>
     </>
   )

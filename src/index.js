@@ -4,6 +4,10 @@ import App from "./App";
 //incorporamos estilos via global
 import "./styles/global.css";
 
+//importamos los estilos de react Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
