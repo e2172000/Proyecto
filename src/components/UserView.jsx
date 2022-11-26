@@ -5,12 +5,24 @@ import { Container, Stack, Button, Form, Table } from "react-bootstrap"
 
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';
+//importamos la funcion de filtrar datos para busqueda dataFilter
+import dataFilter from '../functions/dataFilter';
+
 
 
 function UserView( {user} ) {
 
-  //creamos el estado para poder guardar los productos
+  //creamos el estado para poder guardar los restaurantes
   const [restaurants, setRestaurants] = React.useState([]);
+
+  //funcion para manejar el input de buscar y definir que esta buscando la persona
+  async function searchFormHandler(e) {
+    e.preventDefault();
+
+    const search = e.target.search.value;
+    const newDocs = await dataFilter(search)
+    setRestaurants(newDocs);
+  }
     
   //guardar los restaurantes de la base de datos en el estado
   function updateStateProducts(){
@@ -33,7 +45,7 @@ function UserView( {user} ) {
 
       <hr />
 
-    <Form>
+    <Form onSubmit={ searchFormHandler }>
       <Stack direction='horizontal'>
 
         <Form.Group controlId='search' className='w-75 m-3'>
@@ -44,7 +56,13 @@ function UserView( {user} ) {
           Search
         </Button>
 
-        <Button variant='light'>
+        <Button 
+        variant='light' 
+        onClick={() => {
+          const input = document.getElementById("search");
+          input.value = "";
+          updateStateProducts();
+        }}>
           Reset 
         </Button>
 
@@ -66,7 +84,6 @@ function UserView( {user} ) {
           <th>Lunch</th>
           <th>Dinner</th>
           <th>Menu Hours</th>
-          <th>Options</th>
         </tr>
       </thead>
 
@@ -83,10 +100,6 @@ function UserView( {user} ) {
             <td>{restaurant.lunch}</td>
             <td>{restaurant.dinner}</td>
             <td>{restaurant.hours}</td>
-            <td>
-              <Button variant='dark'>Edit</Button>
-              <Button variant='danger'>Delete</Button>
-            </td>
 
           </tr>
         ))}

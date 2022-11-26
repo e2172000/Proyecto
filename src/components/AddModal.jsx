@@ -50,7 +50,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts }) {
                 <Form.Control id="breakfast" placeholder="Breakfast" type="text" className="mb-1"/>
                 <Form.Control id="lunch" placeholder="Lunch" type="text" className="mb-1"/>
                 <Form.Control id="dinner" placeholder="Dinner" type="text" className="mb-1"/>
-                <Form.Control id="hours" placeholder="Speial Hours Config" type="" className="mb-1"/>
+                <Form.Control id="hours" placeholder="Speial Hours Config" type="text" className="mb-1"/>
             </Stack>
         </Form>
 
