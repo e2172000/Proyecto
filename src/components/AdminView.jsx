@@ -5,6 +5,8 @@ import { Container, Stack, Button, Form, Table } from "react-bootstrap"
 
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';
+//importamos la funcion para eliminar restaurantes deleteRestaurantAdmin
+import deleteRestaurantAdmin from '../functions/deleteRestaurantAdmin';
 
 //Modal para agregar restaurantes
 import AddModal from './AddModal';
@@ -105,7 +107,12 @@ function AdminView({ user }) {
             <td>{restaurant.hours}</td>
             <td>
               <Button variant='dark'>Edit</Button>
-              <Button variant='danger'>Delete</Button>
+              <Button variant='danger' onClick={ () => { 
+                deleteRestaurantAdmin(restaurant).then(
+                  (confirmacion) => {
+                    updateStateProducts();
+                  });
+              }}>Delete</Button>
             </td>
 
           </tr>
