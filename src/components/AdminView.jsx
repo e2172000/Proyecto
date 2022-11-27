@@ -60,9 +60,10 @@ function AdminView({ user }) {
     <Container fluid>
 
       <AddModal 
-        isAddModal={isAddModal}
-        setIsAddModal={setIsAddModal}
+        isAddModal={ isAddModal }
+        setIsAddModal={ setIsAddModal }
         updateStateProducts={ updateStateProducts }
+        user={ user }
       />
 
       { editRestaurant && (
@@ -72,6 +73,7 @@ function AdminView({ user }) {
           updateStateProducts={ updateStateProducts }
           editRestaurant={ editRestaurant }
           setEditRestaurant= { setEditRestaurant }
+          user= {user}
         />
       )}
       <Stack>
@@ -151,7 +153,7 @@ function AdminView({ user }) {
               Edit</Button>
 
               <Button variant='danger' onClick={ () => { 
-                deleteRestaurantAdmin({...restaurant}).then(
+                deleteRestaurantAdmin({...restaurant}, user.email).then(
                   (confirmacion) => {
                     updateStateProducts();
                   });

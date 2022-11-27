@@ -4,7 +4,7 @@ import React from 'react'
 import { Modal, Stack, Form, Button } from "react-bootstrap";
 
 //importamos la funcion de addRestaurant para usarla desde el modal
-import addRestaurant from "../functions/addRestaurant";
+import editRes from '../functions/editRestaurant';
 
 
 function EditModal({ 
@@ -13,6 +13,7 @@ function EditModal({
     updateStateProducts, 
     editRestaurant,
     setEditRestaurant,
+    user,
     }) {
     //creamos la funcion para editar restaurantes desde el modal
     function editRestaurantModal() {
@@ -28,9 +29,9 @@ function EditModal({
         const hours = document.getElementById("hours").value;
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours}
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours};
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
-        addRestaurant(infoRestaurant);
+        editRes(infoRestaurant, user.email);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 
         setEditRestaurant(null);
         //actualizamos el estado de los datos de  la bd para que al agregar un restaurante desde el modal se actualize y lo muestre en pantalla 
