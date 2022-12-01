@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 //importamos estilos desde bootstrap
 import { Container } from "react-bootstrap";
+
+//importamos las vistas para administrador y usuario
+import CreateUser from "./components/CreateUser";
+
 
 //importamos las pantallas del login y del home
 import Home from "./screens/Home";
@@ -64,13 +69,32 @@ function setUserFirebase(usuarioFirebase) {
     }
   });
 
+
+console.log(user)
+
   return (
     <>
-    <React.StrictMode>
-      <Container fluid>
-        {user ? <Home  user={user} /> : <Login />} 
-      </Container>
-    </React.StrictMode>
+   
+
+    <div>
+    <BrowserRouter>
+        <Routes>
+          
+        {user ? 
+           <Route element={<Home  user={user}/>} path="/" /> :
+          <>
+            <Route path="/" element={<Login />}/>
+            <Route element={<Home  user={user}/>} path="/" />
+          </>   
+        }
+
+          <Route element={<CreateUser />} path="admin/create" />
+              
+
+          <Route element={<h1>Not found!</h1>} />
+        </Routes>
+    </BrowserRouter>
+</div>
     </>
   )
 }

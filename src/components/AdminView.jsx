@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 //importamos estilos desde bootstrap
 import { Container, Stack, Button, Form, Table } from "react-bootstrap"
@@ -83,6 +84,8 @@ function AdminView({ user }) {
       </Stack>
 
       <Button onClick={ addRestaurantAdmin }>Add Restaurant</Button>
+
+      <Link to={`/admin/create`} style={{ textDecoration: 'none' }}> Add Usuario </Link>
 
       <hr />
 
