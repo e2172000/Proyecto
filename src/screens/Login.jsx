@@ -18,7 +18,7 @@ const firestore = getFirestore(firebaseApp);
 
 
 
-function Login() {
+function Login({user}) {
 
   const [isRegistrando, setIsRegistrando] = useState(false);
 
@@ -102,6 +102,8 @@ function Login() {
       <Button onClick={() => setIsRegistrando(!isRegistrando)}>
         {isRegistrando ? "Login" : "Sign Up"}
       </Button>
+
+      
 
     </Container>
   )
