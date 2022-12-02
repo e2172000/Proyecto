@@ -50,7 +50,7 @@ function setUserFirebase(usuarioFirebase) {
     };
     //guardamos la informacion en el usuario
     setUser(userData);
-    console.log(':userData final', userData);
+    //console.log(':userData final', userData);
   });
 }
 
@@ -70,31 +70,31 @@ function setUserFirebase(usuarioFirebase) {
   });
 
 
-console.log(user)
+//console.log(user)
 
   return (
     <>
    
 
-    <div>
-    <BrowserRouter>
-        <Routes>
-          
-        {user ? 
-           <Route element={<Home  user={user}/>} path="/" /> :
-          <>
-            <Route path="/" element={<Login />}/>
-            <Route element={<Home  user={user}/>} path="/" />
-          </>   
-        }
+    <Container>
+      <BrowserRouter>
+          <Routes>
+            
+          {user ? 
+            <Route element={<Home  user={user}/>} path="/" /> :
+            <>
+              <Route path="/" element={<Login />}/>
+              <Route element={<Home  user={user}/>} path="/" />
+            </>   
+          }
 
-          <Route element={<CreateUser />} path="admin/create" />
-              
+            <Route element={<CreateUser />} path="admin/create" />
+                
 
-          <Route element={<h1>Not found!</h1>} />
-        </Routes>
-    </BrowserRouter>
-</div>
+            <Route element={<h1>Not found!</h1>} />
+          </Routes>
+      </BrowserRouter>
+    </Container>
     </>
   )
 }

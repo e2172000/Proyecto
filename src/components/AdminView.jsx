@@ -84,10 +84,11 @@ function AdminView({ user }) {
         </p>
       </Stack>
 
+      <div class="btn-group" role="group" aria-label="Basic example">
       <Button onClick={ addRestaurantAdmin }>Add Restaurant</Button>
 
-      <Link to={`/admin/create`} style={{ textDecoration: 'none' }}> Add Usuario </Link>
-
+      <Link to={`/admin/create`} className="btn btn-primary"> Add Usuario </Link>
+      </div>
       <hr />
 
     <Form onSubmit={ searchFormHandler }>
