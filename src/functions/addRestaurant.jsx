@@ -15,7 +15,7 @@ function addRestaurant(infoRestaurant, autor) {
     setDoc(docuRef, infoRestaurant);
 
     //creamos un log con la accion=crear, la informacion del restaurante=infoRestaurant y el autor= autor
-    writeLog("create", infoRestaurant, autor);
+    writeLog("add restaurant", infoRestaurant, autor);
 }
 
 export default addRestaurant;

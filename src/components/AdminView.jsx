@@ -9,7 +9,7 @@ import { Container, Stack, Button, Form, Table } from "react-bootstrap"
 import getAllRestaurants from '../functions/getAllRestaurants';
 //importamos la funcion para eliminar restaurantes deleteRestaurantAdmin
 import deleteRestaurantAdmin from '../functions/deleteRestaurantAdmin';
-//importamos la funcion de filtrar datos para busqueda dataFilter
+//importamos la funcion de filtrar datos para busqueda de restaurantes dataFilter
 import dataFilter from '../functions/dataFilter';
 
 //Modal para agregar restaurantes
@@ -41,19 +41,19 @@ function AdminView({ user }) {
     setRestaurants(newDocs);
   }
   
-  //guardar los restaurantes de la base de datos en el estado
+  //cambiamos el estado de addModal a true para que se muestre y poder agregar productos
+  function addRestaurantAdmin(){
+    setIsAddModal(true);
+  }
+
+  //guardar los restaurantes de la base de datos en el estado restaurants
   function updateStateProducts(){
     getAllRestaurants().then((restaurants) => {
       setRestaurants(restaurants);
     });
   }
 
-  //cambiamos el estado de addModal a true para que se muestre y poder agregar productos
-  function addRestaurantAdmin(){
-    setIsAddModal(true);
-  }
-
-//al iniciar el componente llamamos a la funcion de actualizar el estado con los datos de la base de datos
+  //al iniciar el componente llamamos a la funcion de actualizar el estado con los datos de la base de datos para mostrar en la tabla los restaurantes de la base de datos
   React.useEffect(() => {
     updateStateProducts();
   }, []);
@@ -84,18 +84,20 @@ function AdminView({ user }) {
         </p>
       </Stack>
 
-      <div class="btn-group" role="group" aria-label="Basic example">
+      <div className="btn-group" role="group" aria-label="Basic example">
       <Button onClick={ addRestaurantAdmin }>Add Restaurant</Button>
 
-      <Link to={`/admin/create`} className="btn btn-primary"> Add Usuario </Link>
+      <Link to={`/admin/create`} className="btn btn-primary"> Create New User </Link>
+      <Link to={`/admin/UserList`} className="btn btn-primary"> User List </Link>
       </div>
+
       <hr />
 
     <Form onSubmit={ searchFormHandler }>
       <Stack direction='horizontal'>
 
         <Form.Group controlId='search' className='w-75 m-3'>
-          <Form.Control type='text' placeholder='Search'/>
+          <Form.Control type='text' placeholder='Search Restaurant Name'/>
         </Form.Group>
 
         <Button variant='dark' type='submit'>

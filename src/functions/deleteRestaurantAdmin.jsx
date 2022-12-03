@@ -16,7 +16,7 @@ export default async function deleteRestaurantAdmin(restaurant, user) {
     const deleted = await deleteDoc(docuRef);
 
     //escribimos un log al eliminar un producto
-    writeLog("delete", restaurant, user);
+    writeLog("delete restaurant", restaurant, user);
 
     return deleted;
 }

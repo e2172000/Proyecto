@@ -16,7 +16,7 @@ function editRes (infoRestaurant, autor) {
     setDoc(docuRef, infoRestaurant);
 
     //creamos un log con la accion=crear, la informacion del restaurante=infoRestaurant y el autor= autor
-    writeLog("edit", infoRestaurant, autor);
+    writeLog("edit restaurant", infoRestaurant, autor);
 }
 
 export default editRes;

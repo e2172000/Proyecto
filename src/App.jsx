@@ -4,18 +4,23 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 //importamos estilos desde bootstrap
 import { Container } from "react-bootstrap";
 
-//importamos las vistas para administrador y usuario
+//importamos los componentes de crear usuario y la lista de usuarios
 import CreateUser from "./components/CreateUser";
+import UserList from "./components/UserList";
 
 
 //importamos las pantallas del login y del home
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 
+//importamos el componrnte NotFound
+import NotFound from "./components/NotFound";
+
 //importamos desde firebase
 import firebaseApp from "./firebase/credenciales";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+
 
 
 //inicializamos auth y firestore
@@ -88,10 +93,11 @@ function setUserFirebase(usuarioFirebase) {
             </>   
           }
 
-            <Route element={<CreateUser />} path="admin/create" />
+            <Route element={<CreateUser user={ user }/>} path="admin/create" />
+            <Route element={<UserList user={ user }/>} path="admin/userList" />
                 
 
-            <Route element={<h1>Not found!</h1>} />
+            <Route element={ <NotFound /> } path="*" />
           </Routes>
       </BrowserRouter>
     </Container>

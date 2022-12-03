@@ -3,7 +3,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 //importamos estilos desde bootstrap
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Stack } from "react-bootstrap";
 
 //importamos desde firebase
 import firebaseApp from "../firebase/credenciales";
@@ -31,7 +31,7 @@ function CreateUser( {user} ) {
 
     //con la informacion la pasamos a la base de datos 
     const docuRef =  doc(firestore, `usuarios/${infoUsuario.user.uid}`);
-    setDoc(docuRef, { correo: email, rol: rol, password: password});
+    setDoc(docuRef, { email: email, rol: rol, password: password});
 
   }
 
@@ -57,8 +57,15 @@ function CreateUser( {user} ) {
   return (
     <Container>
 
-      <h1> Create New User </h1>
-      <Link to={`/`} className="btn btn-primary"> Back </Link>
+      <Stack direction='horizontal' className='justify-content-between'> 
+
+        <p style={{ fontSize: 24}}> 
+          Admin CreateUser, { user.email }
+        </p>
+
+        <Link to={`/`} className="btn btn-primary"> Go Back to Restaurant List </Link>
+      </Stack>
+
     
       <h1> Create New User </h1>
 
