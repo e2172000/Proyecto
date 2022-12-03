@@ -7,6 +7,9 @@ import { Button, Container, Stack } from "react-bootstrap";
 import AdminView from "../components/AdminView";
 import UserView from "../components/UserView";
 
+//importamos la funcion writeUserLog para escribir logs al cerrar sesion
+import writeUserLog from '../functions/writeUserLog';
+
 //importamos desde firebase
 import firebaseApp from "../firebase/credenciales";
 import { getAuth, signOut } from "firebase/auth";
@@ -22,7 +25,10 @@ function Home( {user} ) {
         <p style={{ fontSize: 24}}>
           Home Develop
         </p>
-        <Button onClick={() => signOut(auth)}>Sign Out</Button>
+        <Button onClick={() => {
+          writeUserLog("Sign Out", user.email);
+          signOut(auth);
+          }}>Sign Out</Button>
       </Stack>
       
       { user.rol === "admin" ? <AdminView user={ user }/> : <UserView user={ user }/> }

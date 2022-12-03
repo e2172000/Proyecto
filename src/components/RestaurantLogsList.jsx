@@ -87,7 +87,6 @@ function RestaurantLogsList({ user }) {
                 <th>Action</th>
                 <th>Date</th>
                 <th>Current Time</th>
-                
                 </tr>
             </thead>
 
@@ -100,7 +99,6 @@ function RestaurantLogsList({ user }) {
                         <td>{restaurantLog.action}</td>
                         <td>{restaurantLog.date}</td>
                         <td>{restaurantLog.current_Time}</td>
-                        
                     </tr>
                 ))}
 

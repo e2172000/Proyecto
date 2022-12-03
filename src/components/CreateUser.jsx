@@ -5,6 +5,9 @@ import {Link} from 'react-router-dom'
 //importamos estilos desde bootstrap
 import { Container, Form, Button, Stack } from "react-bootstrap";
 
+//importamos la funcion writeUserLog para escribir logs al crear un nuevo usuario
+import writeUserLog from '../functions/writeUserLog';
+
 //importamos desde firebase
 import firebaseApp from "../firebase/credenciales";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -32,6 +35,8 @@ function CreateUser( {user} ) {
     //con la informacion la pasamos a la base de datos 
     const docuRef =  doc(firestore, `usuarios/${infoUsuario.user.uid}`);
     setDoc(docuRef, { email: email, rol: rol, password: password});
+
+    writeUserLog("User Created", email)
 
   }
 
