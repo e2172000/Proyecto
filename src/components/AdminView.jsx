@@ -88,7 +88,8 @@ function AdminView({ user }) {
       <Button onClick={ addRestaurantAdmin }>Add Restaurant</Button>
 
       <Link to={`/admin/create`} className="btn btn-primary"> Create New User </Link>
-      <Link to={`/admin/UserList`} className="btn btn-primary"> User List </Link>
+      <Link to={`/admin/UserList`} className="btn btn-info"> User List </Link>
+      <Link to={`/admin/restaurantLogsList`} className="btn btn-info"> Restaurant Logs </Link>
       </div>
 
       <hr />

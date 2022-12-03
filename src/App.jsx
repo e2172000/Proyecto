@@ -4,9 +4,10 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 //importamos estilos desde bootstrap
 import { Container } from "react-bootstrap";
 
-//importamos los componentes de crear usuario y la lista de usuarios
+//importamos los componentes de crear usuario, la lista de usuarios y la lista de RestaurantLogs
 import CreateUser from "./components/CreateUser";
 import UserList from "./components/UserList";
+import RestaurantLogsList from "./components/RestaurantLogsList";
 
 
 //importamos las pantallas del login y del home
@@ -95,6 +96,7 @@ function setUserFirebase(usuarioFirebase) {
 
             <Route element={<CreateUser user={ user }/>} path="admin/create" />
             <Route element={<UserList user={ user }/>} path="admin/userList" />
+            <Route element={<RestaurantLogsList user={ user }/>} path="admin/restaurantLogsList" />
                 
 
             <Route element={ <NotFound /> } path="*" />
