@@ -90,6 +90,7 @@ function AdminView({ user }) {
       <Link to={`/admin/create`} className="btn btn-primary"> Create New User </Link>
       <Link to={`/admin/UserList`} className="btn btn-info"> User List </Link>
       <Link to={`/admin/restaurantLogsList`} className="btn btn-info"> Restaurant Logs </Link>
+      <Link to={`/admin/userLogsList`} className="btn btn-info"> Users Logs </Link>
       </div>
 
       <hr />

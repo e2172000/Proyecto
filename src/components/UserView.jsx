@@ -49,7 +49,7 @@ function UserView( {user} ) {
       <Stack direction='horizontal'>
 
         <Form.Group controlId='search' className='w-75 m-3'>
-          <Form.Control type='text' placeholder='Search'/>
+          <Form.Control type='text' placeholder='Search Restaurant Name'/>
         </Form.Group>
 
         <Button variant='dark' type='submit'>
