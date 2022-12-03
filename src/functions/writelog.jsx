@@ -7,12 +7,14 @@ const firestore = getFirestore(firebaseApp);
 export default function writeLog(action, restaurant, autor) {
 
     const collectionRef = collection(firestore, "logs");
+    const date = new Date();
     //pasamos la referencia a la coleccion de logs y el nombre de el documento que queremos, en este caso utilizamos la fecha
-    const docuRef = doc(collectionRef, new Date().toISOString());
+    const docuRef = doc(collectionRef, date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds());
     //creamos la informacion que queremos escribir en logs
     const data = {
         action,
-        date: new Date().toISOString(),
+        date: date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate(),
+        current_Time : date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds(),
         restaurant,
         autor,
     };
