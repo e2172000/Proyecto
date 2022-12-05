@@ -56,6 +56,7 @@ function AdminView({ user }) {
   //al iniciar el componente llamamos a la funcion de actualizar el estado con los datos de la base de datos para mostrar en la tabla los restaurantes de la base de datos
   React.useEffect(() => {
     updateStateProducts();
+    setEditRestaurant();
   }, []);
 
   return (

@@ -85,6 +85,7 @@ function RestaurantLogsList({ user }) {
                 <th>#</th>
                 <th>Autor</th>
                 <th>Action</th>
+                <th>Restaurant</th>
                 <th>Date</th>
                 <th>Current Time</th>
                 </tr>
@@ -97,6 +98,7 @@ function RestaurantLogsList({ user }) {
                         <td>{ index + 1 }</td>
                         <td>{restaurantLog.autor}</td>
                         <td>{restaurantLog.action}</td>
+                        <td>{restaurantLog.restaurant}</td>
                         <td>{restaurantLog.date}</td>
                         <td>{restaurantLog.current_Time}</td>
                     </tr>

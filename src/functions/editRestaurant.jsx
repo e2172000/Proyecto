@@ -12,11 +12,11 @@ const firestore = getFirestore(firebaseApp);
 function editRes (infoRestaurant, autor) {
 
     const collectionRef = collection(firestore, "restaurantes");
-    const docuRef = doc(collectionRef, infoRestaurant.name);
+    const docuRef = doc(collectionRef, infoRestaurant.unique_id);
     setDoc(docuRef, infoRestaurant);
 
     //creamos un log con la accion=crear, la informacion del restaurante=infoRestaurant y el autor= autor
-    writeLog("edit restaurant", infoRestaurant, autor);
+    writeLog("edit restaurant", infoRestaurant.name, autor);
 }
 
 export default editRes;

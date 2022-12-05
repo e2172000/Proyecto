@@ -27,9 +27,10 @@ function EditModal({
         const lunch = document.getElementById("lunch").value;
         const dinner = document.getElementById("dinner").value;
         const hours = document.getElementById("hours").value;
+        const unique_id = restaurantState.unique_id;
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours};
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours,unique_id};
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         editRes(infoRestaurant, user.email);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 

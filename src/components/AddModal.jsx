@@ -4,6 +4,10 @@ import { Modal, Stack, Form, Button } from "react-bootstrap";
 //importamos la funcion de addRestaurant para usarla desde el modal
 import addRestaurant from "../functions/addRestaurant";
 
+//importamos el generador de ids
+import { v4 as uuid } from 'uuid';
+
+
 
 function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
     //creamos la funcion para agragar nuevos restaurantes desde el modal
@@ -18,9 +22,10 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
         const lunch = document.getElementById("lunch").value;
         const dinner = document.getElementById("dinner").value;
         const hours = document.getElementById("hours").value;
+        const unique_id = uuid();
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba addRestaurant
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours}
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours, unique_id}
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         addRestaurant(infoRestaurant, user.email);
         //actualizamos el estado de los datos de  la bd para que al agregar un restaurante desde el modal se actualize y lo muestre en pantalla 
