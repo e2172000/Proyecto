@@ -19,11 +19,15 @@ async function restaurantLogsFilter(searchString) {
     const queryDate = query(collectionRef, 
         where("date", "==", searchString)
         );
+    const queryRestaurant = query(collectionRef, 
+        where("restaurant", "==", searchString)
+        );
     //creamos un array para recibir la informacion cifrada
     const arraySnapshots = await Promise.all([
         getDocs(queryAutor),
         getDocs(queryAction),
         getDocs(queryDate),
+        getDocs(queryRestaurant),
     ]);
 
     //empujamos en docusFiltrado la informacion ya legible

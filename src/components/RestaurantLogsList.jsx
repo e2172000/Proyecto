@@ -57,7 +57,7 @@ function RestaurantLogsList({ user }) {
             <Stack direction='horizontal'>
 
                 <Form.Group controlId='search' className='w-75 m-3'>
-                    <Form.Control type='text' placeholder='Search Autor, Action or Date'/>
+                    <Form.Control type='text' placeholder='Search Autor, Action, Date or Restaurant Name'/>
                 </Form.Group>
 
                 <Button variant='dark' type='submit'>
