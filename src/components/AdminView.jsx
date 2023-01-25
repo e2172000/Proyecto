@@ -57,7 +57,7 @@ function AdminView({ user }) {
   React.useEffect(() => {
     updateStateProducts();
     setEditRestaurant();
-  }, []);
+  }, [])
 
   return (
     <Container fluid>

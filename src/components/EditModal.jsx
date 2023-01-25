@@ -104,7 +104,7 @@ function EditModal({
                 />
 
                 <Form.Select id="image" className="mb-1">
-                    <option>Image Status</option>
+                    <option key = 'blankChoice' hidden value> Image Status </option>
                     <option value= "Added"
 	                    onChange={ (e) => 
 		                    setRestaurantState({
@@ -131,7 +131,7 @@ function EditModal({
                 </Form.Select>
 
                 <Form.Select id="breakfast" className="mb-1">
-                    <option>Breakfast Menu</option>
+                    <option key = 'blankChoice' hidden value> Breakfast Menu </option>
                     <option value= "Yes"
 	                    onChange={ (e) => 
 		                    setRestaurantState({
@@ -150,7 +150,7 @@ function EditModal({
                 </Form.Select>
 
                 <Form.Select id="lunch" className="mb-1">
-                    <option>Lunch Menu</option>
+                    <option key = 'blankChoice' hidden value> Lunch Menu </option>
                     <option value= "Yes"
 	                    onChange={ (e) => 
 		                    setRestaurantState({
@@ -169,7 +169,7 @@ function EditModal({
                 </Form.Select>
 
                 <Form.Select id="dinner" className="mb-1">
-                    <option>Dinner Menu</option>
+                    <option key = 'blankChoice' hidden value> Dinner Menu </option>
                     <option value= "Yes"
 	                    onChange={ (e) => 
 		                    setRestaurantState({
@@ -188,7 +188,7 @@ function EditModal({
                 </Form.Select>
 
                 <Form.Select id="hours" className="mb-1">
-                    <option>Hours Configuration</option>
+                    <option key = 'blankChoice' hidden value> Hours Configuration </option>
                     <option value= "Yes"
 	                    onChange={ (e) => 
 		                    setRestaurantState({

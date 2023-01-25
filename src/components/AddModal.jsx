@@ -54,32 +54,32 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
                 <Form.Control id="link" placeholder="Restaurant Link" type="text" className="mb-1"/>
 
                 <Form.Select id="image" className="mb-1">
-                    <option>Image Status</option>
+                    <option key = 'blankChoice' hidden value> Image Status </option>
                     <option value="Added">Added</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </Form.Select>
 
                 <Form.Select id="breakfast" className="mb-1">
-                    <option>Breakfast Menu</option>
+                    <option key = 'blankChoice' hidden value> Breakfast Menu </option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </Form.Select>
 
                 <Form.Select id="lunch" className="mb-1">
-                    <option>Lunch Menu</option>
+                    <option key = 'blankChoice' hidden value> Lunch Menu </option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </Form.Select>
 
                 <Form.Select id="dinner" className="mb-1">
-                    <option>Dinner Menu</option>
+                    <option key = 'blankChoice' hidden value> Dinner Menu </option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </Form.Select>
 
                 <Form.Select id="hours" className="mb-1">
-                    <option>Hours Configuration</option>
+                    <option key = 'blankChoice' hidden value> Hours Configuration </option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </Form.Select>
