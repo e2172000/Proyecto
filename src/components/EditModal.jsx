@@ -46,6 +46,7 @@ function EditModal({
         ...editRestaurant,
     });
 
+
   return (
     <Modal 
     show={isEditModal}
@@ -102,72 +103,108 @@ function EditModal({
                     }
                 />
 
-                <Form.Control 
-                    id="image" 
-                    placeholder="Image Status" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.image }
-                    onChange={ (e) => 
-                        setRestaurantState({
-                            ...restaurantState, 
-                            image: e.target.value
-                        })
-                    }
-                />
+                <Form.Select id="image" className="mb-1">
+                    <option>Image Status</option>
+                    <option value= "Added"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                image: e.target.value
+                            })
+	                }>Added</option>
 
-                <Form.Control 
-                    id="breakfast" 
-                    placeholder="Breakfast" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.breakfast }
-                    onChange={ (e) => 
-                        setRestaurantState({
-                            ...restaurantState, 
-                            breakfast: e.target.value
-                        })
-                    }
-                />
-                <Form.Control 
-                    id="lunch" 
-                    placeholder="Lunch" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.lunch }
-                    onChange={ (e) => 
-                        setRestaurantState({
-                            ...restaurantState, 
-                            lunch: e.target.value
-                        })
-                    }
-                />
-                <Form.Control 
-                    id="dinner" 
-                    placeholder="Dinner" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.dinner }
-                    onChange={ (e) => 
-                        setRestaurantState({
-                            ...restaurantState, 
-                            dinner: e.target.value
-                        })
-                    }
-                />
-                <Form.Control 
-                id="hours" 
-                placeholder="Speial Hours Config" 
-                type="text" 
-                className="mb-1"
-                value={ restaurantState?.hours }
-                    onChange={ (e) => 
-                        setRestaurantState({
-                            ...restaurantState, 
-                            hours: e.target.value
-                        })
-                    }
-                />
+                    <option value= "Yes"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                image: e.target.value
+                            })
+	                }>Yes</option>
+
+                    <option value= "No"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                image: e.target.value
+                            })
+	                }>No</option>
+                </Form.Select>
+
+                <Form.Select id="breakfast" className="mb-1">
+                    <option>Breakfast Menu</option>
+                    <option value= "Yes"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                breakfast: e.target.value
+                            })
+	                }>Yes</option>
+
+                    <option value= "No"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                breakfast: e.target.value
+                            })
+	                }>No</option>
+                </Form.Select>
+
+                <Form.Select id="lunch" className="mb-1">
+                    <option>Lunch Menu</option>
+                    <option value= "Yes"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                lunch: e.target.value
+                            })
+	                }>Yes</option>
+
+                    <option value= "No"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                lunch: e.target.value
+                            })
+	                }>No</option>
+                </Form.Select>
+
+                <Form.Select id="dinner" className="mb-1">
+                    <option>Dinner Menu</option>
+                    <option value= "Yes"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                dinner: e.target.value
+                            })
+	                }>Yes</option>
+
+                    <option value= "No"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                dinner: e.target.value
+                            })
+	                }>No</option>
+                </Form.Select>
+
+                <Form.Select id="hours" className="mb-1">
+                    <option>Hours Configuration</option>
+                    <option value= "Yes"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                hours: e.target.value
+                            })
+	                }>Yes</option>
+
+                    <option value= "No"
+	                    onChange={ (e) => 
+		                    setRestaurantState({
+                                ...restaurantState, 
+                                hours: e.target.value
+                            })
+	                }>No</option>
+                </Form.Select>
             </Stack>
         </Form>
 

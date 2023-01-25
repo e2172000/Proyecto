@@ -48,14 +48,42 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
 
         <Form>
             <Stack>
+
                 <Form.Control id="name" placeholder="Restaurant Name" type="text" className="mb-1"/>
                 <Form.Control id="address" placeholder="Restaurant Address" type="text" className="mb-1"/>
                 <Form.Control id="link" placeholder="Restaurant Link" type="text" className="mb-1"/>
-                <Form.Control id="image" placeholder="Images Status" type="text" className="mb-1"/>
-                <Form.Control id="breakfast" placeholder="Breakfast" type="text" className="mb-1"/>
-                <Form.Control id="lunch" placeholder="Lunch" type="text" className="mb-1"/>
-                <Form.Control id="dinner" placeholder="Dinner" type="text" className="mb-1"/>
-                <Form.Control id="hours" placeholder="Speial Hours Config" type="text" className="mb-1"/>
+
+                <Form.Select id="image" className="mb-1">
+                    <option>Image Status</option>
+                    <option value="Added">Added</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Select>
+
+                <Form.Select id="breakfast" className="mb-1">
+                    <option>Breakfast Menu</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Select>
+
+                <Form.Select id="lunch" className="mb-1">
+                    <option>Lunch Menu</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Select>
+
+                <Form.Select id="dinner" className="mb-1">
+                    <option>Dinner Menu</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Select>
+
+                <Form.Select id="hours" className="mb-1">
+                    <option>Hours Configuration</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Select>
+        
             </Stack>
         </Form>
 

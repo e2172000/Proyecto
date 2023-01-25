@@ -79,6 +79,7 @@ function AdminView({ user }) {
           user= {user}
         />
       )}
+      
       <Stack>
         <p style={{ fontSize: 24}}> 
           Hola Admin, { user.email }
