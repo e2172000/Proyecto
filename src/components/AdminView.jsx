@@ -11,6 +11,8 @@ import getAllRestaurants from '../functions/getAllRestaurants';
 import deleteRestaurantAdmin from '../functions/deleteRestaurantAdmin';
 //importamos la funcion de filtrar datos para busqueda de restaurantes dataFilter
 import dataFilter from '../functions/dataFilter';
+//Importamos la libreria para poder descargar los reportes en formato de tabla 
+import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
 //Modal para agregar restaurantes
 import AddModal from './AddModal';
@@ -19,6 +21,9 @@ import EditModal from './EditModal';
 
 
 function AdminView({ user }) {
+
+  //Estado paraactualizar los productos luego de editar 
+  const [update, setUpdate] = React.useState();
 
   //creamos un estado para mostrar el modal para agregar nuevos restaurantes
   const [isAddModal, setIsAddModal] = React.useState(false);
@@ -57,6 +62,7 @@ function AdminView({ user }) {
   React.useEffect(() => {
     updateStateProducts();
     setEditRestaurant();
+    setUpdate();
   }, [])
 
   return (
@@ -77,6 +83,7 @@ function AdminView({ user }) {
           editRestaurant={ editRestaurant }
           setEditRestaurant= { setEditRestaurant }
           user= {user}
+          setUpdate= { setUpdate }
         />
       )}
       
@@ -93,6 +100,16 @@ function AdminView({ user }) {
       <Link to={`/admin/UserList`} className="btn btn-info"> User List </Link>
       <Link to={`/admin/restaurantLogsList`} className="btn btn-info"> Restaurant Logs </Link>
       <Link to={`/admin/userLogsList`} className="btn btn-info"> Users Logs </Link>
+
+      <ReactHtmlTableToExcel 
+      id="downloadButton"
+      className="btn btn-success"
+      table="restaurantList"
+      filename="RestaurantList"
+      sheet="San Marcos"
+      buttonText="Download Restaurant List"
+      />
+
       </div>
 
       <hr />
@@ -123,7 +140,7 @@ function AdminView({ user }) {
 
     <hr />
 
-    <Table>
+    <Table id='restaurantList'>
 
       <thead>
         <tr>

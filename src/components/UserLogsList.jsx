@@ -9,7 +9,8 @@ import { Button, Container, Stack, Form, Table } from 'react-bootstrap';
 import getAllUserLogs from '../functions/getAllUserLogs';
 //importamos la funcion de filtrar datos para busqueda de usuarios usertLogsFilter
 import userLogsFilter from '../functions/userLogsFilter';
-
+//Importamos la libreria para poder descargar los reportes en formato de tabla 
+import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
 
 
@@ -53,6 +54,17 @@ function UserLogsList({ user }) {
 
         </Stack>
 
+        <div>
+            <ReactHtmlTableToExcel 
+                id="downloadButton"
+                className="btn btn-success"
+                table="userLogsList"
+                filename="UserLogsList"
+                sheet="User Logs"
+                buttonText="Download User Logs"
+            />
+        </div>
+
         <Form onSubmit={ searchFormHandler }>
             <Stack direction='horizontal'>
 
@@ -78,12 +90,12 @@ function UserLogsList({ user }) {
         
         <hr />
 
-        <Table>
+        <Table id='userLogsList'>
             
             <thead>
                 <tr>
                 <th>#</th>
-                <th>email</th>
+                <th>Email</th>
                 <th>Action</th>
                 <th>Date</th>
                 <th>Current Time</th>

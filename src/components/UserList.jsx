@@ -9,6 +9,8 @@ import { Button, Container, Stack, Form, Table } from 'react-bootstrap';
 import getAllUsers from '../functions/getAllUsers';
 //importamos la funcion de filtrar datos para busqueda de usuarios userFilter
 import userFilter from '../functions/userFilter';
+//Importamos la libreria para poder descargar los reportes en formato de tabla 
+import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
 
 
@@ -53,6 +55,17 @@ function UserList({ user }) {
 
         </Stack>
 
+        <div>
+            <ReactHtmlTableToExcel 
+                id="downloadButton"
+                className="btn btn-success"
+                table="userList"
+                filename="UserList"
+                sheet="San Marcos Users"
+                buttonText="Download User List"
+            />
+        </div>
+
         <Form onSubmit={ searchFormHandler }>
             <Stack direction='horizontal'>
 
@@ -78,7 +91,7 @@ function UserList({ user }) {
         
         <hr />
 
-        <Table>
+        <Table id="userList">
             
             <thead>
                 <tr>

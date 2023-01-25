@@ -9,6 +9,8 @@ import { Button, Container, Stack, Form, Table } from 'react-bootstrap';
 import getAllRestaurantLogs from '../functions/getAllRestaurantLogs';
 //importamos la funcion de filtrar datos para busqueda de usuarios restaurantLogsFilter
 import restaurantLogsFilter from '../functions/restaurantLogsFilter';
+//Importamos la libreria para poder descargar los reportes en formato de tabla 
+import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
 
 
@@ -53,6 +55,17 @@ function RestaurantLogsList({ user }) {
 
         </Stack>
 
+        <div>
+            <ReactHtmlTableToExcel 
+                id="downloadButton"
+                className="btn btn-success"
+                table="restaurantLogsList"
+                filename="RestaurantLogsList"
+                sheet="Restaurant Logs"
+                buttonText="Download Restaurant Logs"
+            />
+        </div>
+
         <Form onSubmit={ searchFormHandler }>
             <Stack direction='horizontal'>
 
@@ -78,7 +91,7 @@ function RestaurantLogsList({ user }) {
         
         <hr />
 
-        <Table>
+        <Table id="restaurantLogsList">
             
             <thead>
                 <tr>

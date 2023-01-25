@@ -14,6 +14,7 @@ function EditModal({
     editRestaurant,
     setEditRestaurant,
     user,
+    setUpdate
     }) {
     //creamos la funcion para editar restaurantes desde el modal
     function editRestaurantModal() {
@@ -39,6 +40,7 @@ function EditModal({
         updateStateProducts();
         //cerrar el modal
         setIsEditModal(false);
+        setUpdate(true);
     }
 
     //creamos un estado para poder modificar el valor de cada uno de los campos 
