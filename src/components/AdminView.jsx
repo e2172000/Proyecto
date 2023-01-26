@@ -131,7 +131,6 @@ function AdminView({ user }) {
           <th>Images</th>
           <th>Breakfast</th>
           <th>Lunch</th>
-          <th>Dinner</th>
           <th>Menu Hours</th>
           <th>Options</th>
         </tr>
@@ -151,7 +150,6 @@ function AdminView({ user }) {
             <td>{restaurant.image}</td>
             <td>{restaurant.breakfast}</td>
             <td>{restaurant.lunch}</td>
-            <td>{restaurant.dinner}</td>
             <td>{restaurant.hours}</td>
             <td>
 

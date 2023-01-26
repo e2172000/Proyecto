@@ -56,7 +56,6 @@ function UserView( {user} ) {
           <th>Images</th>
           <th>Breakfast</th>
           <th>Lunch</th>
-          <th>Dinner</th>
           <th>Menu Hours</th>
         </tr>
       </thead>
@@ -75,7 +74,6 @@ function UserView( {user} ) {
             <td>{restaurant.image}</td>
             <td>{restaurant.breakfast}</td>
             <td>{restaurant.lunch}</td>
-            <td>{restaurant.dinner}</td>
             <td>{restaurant.hours}</td>
 
           </tr>

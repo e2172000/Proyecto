@@ -20,12 +20,11 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
         const image = document.getElementById("image").value;
         const breakfast = document.getElementById("breakfast").value;
         const lunch = document.getElementById("lunch").value;
-        const dinner = document.getElementById("dinner").value;
         const hours = document.getElementById("hours").value;
         const unique_id = uuid();
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba addRestaurant
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours, unique_id}
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours, unique_id}
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         addRestaurant(infoRestaurant, user.email);
         //actualizamos el estado de los datos de  la bd para que al agregar un restaurante desde el modal se actualize y lo muestre en pantalla 
@@ -68,12 +67,6 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
 
                 <Form.Select id="lunch" className="mb-1">
                     <option key = 'blankChoice' hidden value> Lunch Menu </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Select>
-
-                <Form.Select id="dinner" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Dinner Menu </option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </Form.Select>

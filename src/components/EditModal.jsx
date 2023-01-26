@@ -26,7 +26,6 @@ function EditModal({
         const image = document.getElementById("image").value;
         const breakfast = document.getElementById("breakfast").value;
         const lunch = document.getElementById("lunch").value;
-        //const dinner = document.getElementById("dinner").value;
         const hours = document.getElementById("hours").value;
         const unique_id = restaurantState.unique_id;
 
@@ -48,10 +47,31 @@ function EditModal({
         ...editRestaurant,
     });
 
+    //Creamos estados para verificar que los campos esten llenos en la validacion
+    const [nameValid, setNameValid] = React.useState(false)
+    const [addressValid, setAddressValid] = React.useState(false)
+    const [linkValid, setLinkValid] = React.useState(false)
+    const [textValid,setTextValid] = React.useState(false)
+
     const [imageValid, setImageValid] = React.useState(false)
     const [breakfastValid, setBreakfastValid] = React.useState(false)
     const [lunchValid, setLunchValid] = React.useState(false)
     const [hoursValid, setHoursValid] = React.useState(false)
+    const [selectValid,setSelectValid] = React.useState(false)
+
+    function validationText() {
+        if ((nameValid) && (addressValid) && (linkValid)){
+            setTextValid(true)
+            }
+        //return textValid;
+    }
+
+    function validationSelect() {
+        if ((imageValid) && (breakfastValid) && (lunchValid) && (hoursValid)){
+            setSelectValid(true)
+        //return selectValid;
+        }
+    }
 
   return (
     <Modal 
@@ -75,12 +95,17 @@ function EditModal({
                     type="text" 
                     className="mb-1"
                     value={ restaurantState?.name }
-                    onChange={ (e) => 
+                    onChange={ (e) => {
                         setRestaurantState({
                             ...restaurantState, 
                             name: e.target.value
                         })
-                    }
+                        if((restaurantState.name.length) !== 0){
+                            setNameValid(true)
+                        }else{
+                            setNameValid(false)
+                        }
+                    }}
                 />
                 <Form.Control 
                     id="address" 
@@ -88,12 +113,18 @@ function EditModal({
                     type="text" 
                     className="mb-1"
                     value={ restaurantState?.address }
-                    onChange={ (e) => 
+                    onChange={ (e) => {
+                        //setAddressValid(true)
                         setRestaurantState({
                             ...restaurantState, 
                             address: e.target.value
                         })
-                    }
+                        if((restaurantState.address.length) !== 0){
+                            setAddressValid(true)
+                        }else{
+                            setAddressValid(false)
+                        }
+                    }}
                 />
                 <Form.Control 
                     id="link" 
@@ -101,12 +132,18 @@ function EditModal({
                     type="text" 
                     className="mb-1"
                     value={ restaurantState?.link }
-                    onChange={ (e) => 
+                    onChange={ (e) => {
+                        //setLinkValid(true)
                         setRestaurantState({
                             ...restaurantState, 
                             link: e.target.value
                         })
-                    }
+                        if((restaurantState.link.length) !== 0){
+                            setLinkValid(true)
+                        }else{
+                            setLinkValid(false)
+                        }
+                    }}
                 />
 
                 <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
@@ -161,8 +198,11 @@ function EditModal({
         </Button>
 
         <Button variant="primary"
-            onClick={ () =>{
-                if ((imageValid) && (breakfastValid) && (lunchValid) && (hoursValid)){
+            onClick={ () => {
+                validationText();
+                validationSelect();
+                console.log(linkValid)
+                if ((textValid) && (selectValid)){
                 editRestaurantModal()
                 }else{
                     alert('Must Select All Files')
