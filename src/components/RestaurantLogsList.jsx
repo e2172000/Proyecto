@@ -3,12 +3,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //importamos estilos desde bootstrap
-import { Button, Container, Stack, Form, Table } from 'react-bootstrap';
+import { Container, Stack, Form, Table } from 'react-bootstrap';
 
 //importamos la funcion getAllRestaurantLogs
 import getAllRestaurantLogs from '../functions/getAllRestaurantLogs';
-//importamos la funcion de filtrar datos para busqueda de usuarios restaurantLogsFilter
-import restaurantLogsFilter from '../functions/restaurantLogsFilter';
 //Importamos la libreria para poder descargar los reportes en formato de tabla 
 import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
@@ -19,6 +17,8 @@ function RestaurantLogsList({ user }) {
 
     //creamos el estado para poder guardar los Logs
     const [restaurantLogs, setRestauranLogs] = React.useState([]);
+    //estado para recibir la informacion por la cual se quiere filtrar
+    const [search, setSearch] = React.useState('');
 
     //guardar los usuarios de la base de datos en el estado users
     function updateStateRestaurantLogs(){
@@ -32,16 +32,7 @@ function RestaurantLogsList({ user }) {
         updateStateRestaurantLogs();
     }, []);
 
-    //funcion para manejar el input de buscar y definir que esta buscando la persona
-    async function searchFormHandler(e) {
-        e.preventDefault();
-
-        const search = e.target.search.value;
-        const newDocs = await restaurantLogsFilter(search)
-        setRestauranLogs(newDocs);
-    }
-
-
+    
   return (
     <Container fluid>
 
@@ -66,28 +57,11 @@ function RestaurantLogsList({ user }) {
             />
         </div>
 
-        <Form onSubmit={ searchFormHandler }>
-            <Stack direction='horizontal'>
-
-                <Form.Group controlId='search' className='w-75 m-3'>
-                    <Form.Control type='text' placeholder='Search Autor, Action, Date or Restaurant Name'/>
-                </Form.Group>
-
-                <Button variant='dark' type='submit'>
-                Search
-                </Button>
-
-                <Button 
-                    variant='light' 
-                    onClick={() => {
-                        const input = document.getElementById("search");
-                        input.value = "";
-                        updateStateRestaurantLogs();
-                    }}>
-                Reset 
-                </Button>
-            </Stack>
-        </Form>
+        <Form.Group controlId='search' className='w-75 m-3'>
+            <Form.Control type='text' placeholder='Search Restaurant Name'
+                onChange={(e) => setSearch(e.target.value)}
+            />
+        </Form.Group>
         
         <hr />
 
@@ -106,7 +80,10 @@ function RestaurantLogsList({ user }) {
 
             <tbody>
 
-                { restaurantLogs && restaurantLogs.map((restaurantLog,index) => (
+                { restaurantLogs && restaurantLogs.filter((usuario) =>{
+                    return Object.keys(usuario).some(key => {
+                        return usuario[key].toString().toLowerCase().includes(search)})
+                }).map((restaurantLog,index) => (
                     <tr key={ index }>
                         <td>{ index + 1 }</td>
                         <td>{restaurantLog.autor}</td>

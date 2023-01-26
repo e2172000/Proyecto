@@ -3,21 +3,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //importamos estilos desde bootstrap
-import { Button, Container, Stack, Form, Table } from 'react-bootstrap';
+import { Container, Stack, Form, Table } from 'react-bootstrap';
 
 //importamos la funcion getAllUserLogs
 import getAllUserLogs from '../functions/getAllUserLogs';
-//importamos la funcion de filtrar datos para busqueda de usuarios usertLogsFilter
-import userLogsFilter from '../functions/userLogsFilter';
 //Importamos la libreria para poder descargar los reportes en formato de tabla 
 import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
-
+ 
 
 function UserLogsList({ user }) {
 
     //creamos el estado para poder guardar los Logs
     const [userLogs, setUserLogs] = React.useState([]);
+    //estado para recibir la informacion por la cual se quiere filtrar
+    const [search, setSearch] = React.useState('');
 
     //guardar los usuarios de la base de datos en el estado users
     function updateStateUserLogs(){
@@ -30,15 +30,6 @@ function UserLogsList({ user }) {
     React.useEffect(() => {
         updateStateUserLogs();
     }, []);
-
-    //funcion para manejar el input de buscar y definir que esta buscando la persona
-    async function searchFormHandler(e) {
-        e.preventDefault();
-
-        const search = e.target.search.value;
-        const newDocs = await userLogsFilter(search)
-        setUserLogs(newDocs);
-    }
 
 
   return (
@@ -65,28 +56,11 @@ function UserLogsList({ user }) {
             />
         </div>
 
-        <Form onSubmit={ searchFormHandler }>
-            <Stack direction='horizontal'>
-
-                <Form.Group controlId='search' className='w-75 m-3'>
-                    <Form.Control type='text' placeholder='Search email, Action or Date'/>
-                </Form.Group>
-
-                <Button variant='dark' type='submit'>
-                Search
-                </Button>
-
-                <Button 
-                    variant='light' 
-                    onClick={() => {
-                        const input = document.getElementById("search");
-                        input.value = "";
-                        updateStateUserLogs();
-                    }}>
-                Reset 
-                </Button>
-            </Stack>
-        </Form>
+        <Form.Group controlId='search' className='w-75 m-3'>
+            <Form.Control type='text' placeholder='Search Restaurant Name'
+                onChange={(e) => setSearch(e.target.value)}
+            />
+        </Form.Group>
         
         <hr />
 
@@ -104,7 +78,10 @@ function UserLogsList({ user }) {
 
             <tbody>
 
-                { userLogs && userLogs.map((userLog,index) => (
+                { userLogs && userLogs.filter((usuario) =>{
+                    return Object.keys(usuario).some(key => {
+                        return usuario[key].toString().toLowerCase().includes(search)})
+                }).map((userLog,index) => (
                     <tr key={ index }>
                         <td>{ index + 1 }</td>
                         <td>{userLog.email}</td>

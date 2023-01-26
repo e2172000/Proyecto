@@ -26,12 +26,12 @@ function EditModal({
         const image = document.getElementById("image").value;
         const breakfast = document.getElementById("breakfast").value;
         const lunch = document.getElementById("lunch").value;
-        const dinner = document.getElementById("dinner").value;
+        //const dinner = document.getElementById("dinner").value;
         const hours = document.getElementById("hours").value;
         const unique_id = restaurantState.unique_id;
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, dinner, hours,unique_id};
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours,unique_id};
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         editRes(infoRestaurant, user.email);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 
@@ -48,6 +48,10 @@ function EditModal({
         ...editRestaurant,
     });
 
+    const [imageValid, setImageValid] = React.useState(false)
+    const [breakfastValid, setBreakfastValid] = React.useState(false)
+    const [lunchValid, setLunchValid] = React.useState(false)
+    const [hoursValid, setHoursValid] = React.useState(false)
 
   return (
     <Modal 
@@ -105,108 +109,43 @@ function EditModal({
                     }
                 />
 
-                <Form.Select id="image" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Image Status </option>
-                    <option value= "Added"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                image: e.target.value
-                            })
-	                }>Added</option>
+                <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
+                        setImageValid(true)
+                        setRestaurantState({...restaurantState, image: e.target.value})
+                        }}>
+                        <option key = 'blankChoice' hidden value> Image Status </option>
+                        <option value= "Added">Added</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                </Form.Control>
 
-                    <option value= "Yes"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                image: e.target.value
-                            })
-	                }>Yes</option>
-
-                    <option value= "No"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                image: e.target.value
-                            })
-	                }>No</option>
-                </Form.Select>
-
-                <Form.Select id="breakfast" className="mb-1">
+                <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
+                    setBreakfastValid(true)
+                    setRestaurantState({...restaurantState, image: e.target.value})
+                    }}>
                     <option key = 'blankChoice' hidden value> Breakfast Menu </option>
-                    <option value= "Yes"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                breakfast: e.target.value
-                            })
-	                }>Yes</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Control>
 
-                    <option value= "No"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                breakfast: e.target.value
-                            })
-	                }>No</option>
-                </Form.Select>
-
-                <Form.Select id="lunch" className="mb-1">
+                <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
+                    setLunchValid(true)
+                    setRestaurantState({...restaurantState, image: e.target.value})
+                    }}>
                     <option key = 'blankChoice' hidden value> Lunch Menu </option>
-                    <option value= "Yes"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                lunch: e.target.value
-                            })
-	                }>Yes</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Control>
 
-                    <option value= "No"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                lunch: e.target.value
-                            })
-	                }>No</option>
-                </Form.Select>
+                <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
+                    setHoursValid(true)
+                    setRestaurantState({...restaurantState, image: e.target.value})
+                    }}>
+                    <option key = 'blankChoice' hidden value> Hours Menu </option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </Form.Control>
 
-                <Form.Select id="dinner" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Dinner Menu </option>
-                    <option value= "Yes"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                dinner: e.target.value
-                            })
-	                }>Yes</option>
-
-                    <option value= "No"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                dinner: e.target.value
-                            })
-	                }>No</option>
-                </Form.Select>
-
-                <Form.Select id="hours" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Hours Configuration </option>
-                    <option value= "Yes"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                hours: e.target.value
-                            })
-	                }>Yes</option>
-
-                    <option value= "No"
-	                    onChange={ (e) => 
-		                    setRestaurantState({
-                                ...restaurantState, 
-                                hours: e.target.value
-                            })
-	                }>No</option>
-                </Form.Select>
             </Stack>
         </Form>
 
@@ -222,7 +161,12 @@ function EditModal({
         </Button>
 
         <Button variant="primary"
-            onClick={ editRestaurantModal }
+            onClick={ () =>{
+                if ((imageValid) && (breakfastValid) && (lunchValid) && (hoursValid)){
+                editRestaurantModal()
+                }else{
+                    alert('Must Select All Files')
+            }}}
         >
             Edit
         </Button>

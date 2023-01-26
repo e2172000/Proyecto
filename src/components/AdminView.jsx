@@ -9,8 +9,7 @@ import { Container, Stack, Button, Form, Table } from "react-bootstrap"
 import getAllRestaurants from '../functions/getAllRestaurants';
 //importamos la funcion para eliminar restaurantes deleteRestaurantAdmin
 import deleteRestaurantAdmin from '../functions/deleteRestaurantAdmin';
-//importamos la funcion de filtrar datos para busqueda de restaurantes dataFilter
-import dataFilter from '../functions/dataFilter';
+
 //Importamos la libreria para poder descargar los reportes en formato de tabla 
 import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
@@ -36,15 +35,8 @@ function AdminView({ user }) {
 
   //estado para recibir la informacion del restaurante a editar 
   const [editRestaurant, setEditRestaurant] = React.useState({});
-
-  //funcion para manejar el input de buscar y definir que esta buscando la persona
-  async function searchFormHandler(e) {
-    e.preventDefault();
-
-    const search = e.target.search.value;
-    const newDocs = await dataFilter(search)
-    setRestaurants(newDocs);
-  }
+  //estado para recibir la informacion por la cual se quiere filtrar
+  const [search, setSearch] = React.useState('');
   
   //cambiamos el estado de addModal a true para que se muestre y poder agregar productos
   function addRestaurantAdmin(){
@@ -114,28 +106,16 @@ function AdminView({ user }) {
 
       <hr />
 
-    <Form onSubmit={ searchFormHandler }>
-      <Stack direction='horizontal'>
+      <Form >
+        <Stack direction='horizontal'>
 
-        <Form.Group controlId='search' className='w-75 m-3'>
-          <Form.Control type='text' placeholder='Search Restaurant Name'/>
-        </Form.Group>
+          <Form.Group controlId='search' className='w-75 m-3'>
+            <Form.Control type='text' placeholder='Search...'
+            onChange={(e) => setSearch(e.target.value)}
+            />
+          </Form.Group>
 
-        <Button variant='dark' type='submit'>
-          Search
-        </Button>
-
-        <Button 
-        variant='light' 
-        onClick={() => {
-          const input = document.getElementById("search");
-          input.value = "";
-          updateStateProducts();
-        }}>
-          Reset 
-        </Button>
-
-      </Stack>
+        </Stack>
     </Form>
 
     <hr />
@@ -159,7 +139,10 @@ function AdminView({ user }) {
 
       <tbody>
 
-        { restaurants && restaurants.map((restaurant, index) => (
+        { restaurants && restaurants.filter((restaurant) =>{
+          return Object.keys(restaurant).some(key => {
+            return restaurant[key].toString().toLowerCase().includes(search)})
+        }).map((restaurant, index) => (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{restaurant.name}</td>

@@ -1,12 +1,11 @@
 import React from 'react'
 
 //importamos estilos desde bootstrap
-import { Container, Stack, Button, Form, Table } from "react-bootstrap"
+import { Container, Stack, Form, Table } from "react-bootstrap"
 
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';
-//importamos la funcion de filtrar datos para busqueda dataFilter
-import dataFilter from '../functions/dataFilter';
+
 
 
 
@@ -14,16 +13,9 @@ function UserView( {user} ) {
 
   //creamos el estado para poder guardar los restaurantes
   const [restaurants, setRestaurants] = React.useState([]);
+  //estado para recibir la informacion por la cual se quiere filtrar
+  const [search, setSearch] = React.useState('');
 
-  //funcion para manejar el input de buscar y definir que esta buscando la persona
-  async function searchFormHandler(e) {
-    e.preventDefault();
-
-    const search = e.target.search.value;
-    const newDocs = await dataFilter(search)
-    setRestaurants(newDocs);
-  }
-    
   //guardar los restaurantes de la base de datos en el estado
   function updateStateProducts(){
     getAllRestaurants().then((restaurants) => {
@@ -45,29 +37,11 @@ function UserView( {user} ) {
 
       <hr />
 
-    <Form onSubmit={ searchFormHandler }>
-      <Stack direction='horizontal'>
-
-        <Form.Group controlId='search' className='w-75 m-3'>
-          <Form.Control type='text' placeholder='Search Restaurant Name'/>
+      <Form.Group controlId='search' className='w-75 m-3'>
+            <Form.Control type='text' placeholder='Search Restaurant Name'
+                onChange={(e) => setSearch(e.target.value)}
+            />
         </Form.Group>
-
-        <Button variant='dark' type='submit'>
-          Search
-        </Button>
-
-        <Button 
-        variant='light' 
-        onClick={() => {
-          const input = document.getElementById("search");
-          input.value = "";
-          updateStateProducts();
-        }}>
-          Reset 
-        </Button>
-
-      </Stack>
-    </Form>
 
     <hr />
 
@@ -89,7 +63,10 @@ function UserView( {user} ) {
 
       <tbody>
 
-        { restaurants && restaurants.map((restaurant, index) => (
+        { restaurants && restaurants.filter((usuario) =>{
+            return Object.keys(usuario).some(key => {
+                return usuario[key].toString().toLowerCase().includes(search)})
+        }).map((restaurant, index) => (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{restaurant.name}</td>

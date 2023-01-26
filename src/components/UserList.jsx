@@ -3,22 +3,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //importamos estilos desde bootstrap
-import { Button, Container, Stack, Form, Table } from 'react-bootstrap';
+import { Container, Stack, Form, Table } from 'react-bootstrap';
 
 //importamos la funcion getAllUsers
 import getAllUsers from '../functions/getAllUsers';
-//importamos la funcion de filtrar datos para busqueda de usuarios userFilter
-import userFilter from '../functions/userFilter';
 //Importamos la libreria para poder descargar los reportes en formato de tabla 
 import ReactHtmlTableToExcel from 'react-html-table-to-excel';
-
-
-
 
 function UserList({ user }) {
 
     //creamos el estado para poder guardar los usuarios
     const [usuarios, setUsuarios] = React.useState([]);
+    //estado para recibir la informacion por la cual se quiere filtrar
+    const [search, setSearch] = React.useState('');
 
     //guardar los usuarios de la base de datos en el estado users
     function updateStateUsers(){
@@ -31,16 +28,7 @@ function UserList({ user }) {
     React.useEffect(() => {
         updateStateUsers();
     }, []);
-
-    //funcion para manejar el input de buscar y definir que esta buscando la persona
-    async function searchFormHandler(e) {
-        e.preventDefault();
-
-        const search = e.target.search.value;
-        const newDocs = await userFilter(search)
-        setUsuarios(newDocs);
-    }
-
+    
 
   return (
     <Container fluid>
@@ -66,26 +54,16 @@ function UserList({ user }) {
             />
         </div>
 
-        <Form onSubmit={ searchFormHandler }>
+        <Form>
             <Stack direction='horizontal'>
 
                 <Form.Group controlId='search' className='w-75 m-3'>
-                    <Form.Control type='text' placeholder='Search User Email or Rol'/>
+                    <Form.Control type='text' placeholder='Search Restaurant Name'
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
                 </Form.Group>
 
-                <Button variant='dark' type='submit'>
-                Search
-                </Button>
-
-                <Button 
-                    variant='light' 
-                    onClick={() => {
-                        const input = document.getElementById("search");
-                        input.value = "";
-                        updateStateUsers();
-                    }}>
-                Reset 
-                </Button>
+                
             </Stack>
         </Form>
         
@@ -104,7 +82,10 @@ function UserList({ user }) {
 
             <tbody>
 
-                { usuarios && usuarios.map((usuario,index) => (
+                { usuarios && usuarios.filter((usuario) =>{
+                    return Object.keys(usuario).some(key => {
+                        return usuario[key].toString().toLowerCase().includes(search)})
+                }).map((usuario,index) => (
                     <tr key={ index }>
                         <td>{ index + 1 }</td>
                         <td>{usuario.email}</td>
