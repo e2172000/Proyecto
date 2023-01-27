@@ -48,10 +48,10 @@ function EditModal({
     });
 
     //Creamos estados para verificar que los campos esten llenos en la validacion
-    const [nameValid, setNameValid] = React.useState(false)
-    const [addressValid, setAddressValid] = React.useState(false)
-    const [linkValid, setLinkValid] = React.useState(false)
-    const [textValid,setTextValid] = React.useState(false)
+    const [nameValid, setNameValid] = React.useState(true)
+    const [addressValid, setAddressValid] = React.useState(true)
+    const [linkValid, setLinkValid] = React.useState(true)
+    const [textValid,setTextValid] = React.useState(true)
 
     const [imageValid, setImageValid] = React.useState(false)
     const [breakfastValid, setBreakfastValid] = React.useState(false)
@@ -100,10 +100,10 @@ function EditModal({
                             ...restaurantState, 
                             name: e.target.value
                         })
-                        if((restaurantState.name.length) !== 0){
-                            setNameValid(true)
-                        }else{
+                        if((restaurantState.name.length) === 0){
                             setNameValid(false)
+                        }else{
+                            setNameValid(true)
                         }
                     }}
                 />
@@ -119,10 +119,10 @@ function EditModal({
                             ...restaurantState, 
                             address: e.target.value
                         })
-                        if((restaurantState.address.length) !== 0){
-                            setAddressValid(true)
-                        }else{
+                        if((restaurantState.address.length) === 0){
                             setAddressValid(false)
+                        }else{
+                            setAddressValid(true)
                         }
                     }}
                 />
@@ -138,10 +138,10 @@ function EditModal({
                             ...restaurantState, 
                             link: e.target.value
                         })
-                        if((restaurantState.link.length) !== 0){
-                            setLinkValid(true)
-                        }else{
+                        if((restaurantState.link.length) === 0){
                             setLinkValid(false)
+                        }else{
+                            setLinkValid(true)
                         }
                     }}
                 />
@@ -201,7 +201,8 @@ function EditModal({
             onClick={ () => {
                 validationText();
                 validationSelect();
-                console.log(linkValid)
+                console.log(textValid)
+                console.log(selectValid)
                 if ((textValid) && (selectValid)){
                 editRestaurantModal()
                 }else{
