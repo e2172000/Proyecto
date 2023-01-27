@@ -6,6 +6,9 @@ import { Container, Stack, Form, Table } from "react-bootstrap"
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';
 
+//Importamos la libreria para poder descargar los reportes en formato de tabla 
+import ReactHtmlTableToExcel from 'react-html-table-to-excel';
+
 
 
 
@@ -35,17 +38,28 @@ function UserView( {user} ) {
         </p>
       </Stack>
 
+      <div>
+            <ReactHtmlTableToExcel 
+                id="downloadButton"
+                className="btn btn-success"
+                table="restaurantList"
+                filename="RestaurantList"
+                sheet="San Marcos"
+                buttonText="Download Restaurant List"
+            />
+        </div>
+
       <hr />
 
       <Form.Group controlId='search' className='w-75 m-3'>
-            <Form.Control type='text' placeholder='Search Restaurant Name'
+            <Form.Control type='text' placeholder='Search...'
                 onChange={(e) => setSearch(e.target.value)}
             />
         </Form.Group>
 
     <hr />
 
-    <Table>
+    <Table id='restaurantList' striped bordered hover>
 
       <thead>
         <tr>

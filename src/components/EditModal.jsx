@@ -48,171 +48,152 @@ function EditModal({
     });
 
     //Creamos estados para verificar que los campos esten llenos en la validacion
-    const [nameValid, setNameValid] = React.useState(true)
-    const [addressValid, setAddressValid] = React.useState(true)
-    const [linkValid, setLinkValid] = React.useState(true)
-    const [textValid,setTextValid] = React.useState(true)
-
     const [imageValid, setImageValid] = React.useState(false)
     const [breakfastValid, setBreakfastValid] = React.useState(false)
     const [lunchValid, setLunchValid] = React.useState(false)
     const [hoursValid, setHoursValid] = React.useState(false)
-    const [selectValid,setSelectValid] = React.useState(false)
-
+    //validamos que los campos contengan texto
     function validationText() {
-        if ((nameValid) && (addressValid) && (linkValid)){
-            setTextValid(true)
-            }
-        //return textValid;
-    }
+  
+        const name = document.getElementById("name").value;
+        const address = document.getElementById("address").value;
+        const link = document.getElementById("link").value;
 
+        if ((name.length>0) && (address.length>0) && (link.length>0)){
+            return true
+        } else {
+            return false
+        }
+    }
+    //Validamos que los campos seleccionables no esten vacios
     function validationSelect() {
         if ((imageValid) && (breakfastValid) && (lunchValid) && (hoursValid)){
-            setSelectValid(true)
-        //return selectValid;
+           return true
+        } else {
+            return false
         }
     }
 
   return (
     <Modal 
-    show={isEditModal}
-    onHide={() => {
-        setIsEditModal(false)  
-        setEditRestaurant(null);
-        }}>
-
-    <Modal.Header>
-        <Modal.Title>Edit Restaurant</Modal.Title>
-    </Modal.Header>
-
-    <Modal.Body>
-
-        <Form>
-            <Stack>
-                <Form.Control 
-                    id="name" 
-                    placeholder="Restaurant Name" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.name }
-                    onChange={ (e) => {
-                        setRestaurantState({
-                            ...restaurantState, 
-                            name: e.target.value
-                        })
-                        if((restaurantState.name.length) === 0){
-                            setNameValid(false)
-                        }else{
-                            setNameValid(true)
-                        }
-                    }}
-                />
-                <Form.Control 
-                    id="address" 
-                    placeholder="Restaurant Address" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.address }
-                    onChange={ (e) => {
-                        //setAddressValid(true)
-                        setRestaurantState({
-                            ...restaurantState, 
-                            address: e.target.value
-                        })
-                        if((restaurantState.address.length) === 0){
-                            setAddressValid(false)
-                        }else{
-                            setAddressValid(true)
-                        }
-                    }}
-                />
-                <Form.Control 
-                    id="link" 
-                    placeholder="Restaurant Link" 
-                    type="text" 
-                    className="mb-1"
-                    value={ restaurantState?.link }
-                    onChange={ (e) => {
-                        //setLinkValid(true)
-                        setRestaurantState({
-                            ...restaurantState, 
-                            link: e.target.value
-                        })
-                        if((restaurantState.link.length) === 0){
-                            setLinkValid(false)
-                        }else{
-                            setLinkValid(true)
-                        }
-                    }}
-                />
-
-                <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
-                        setImageValid(true)
-                        setRestaurantState({...restaurantState, image: e.target.value})
-                        }}>
-                        <option key = 'blankChoice' hidden value> Image Status </option>
-                        <option value= "Added">Added</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                </Form.Control>
-
-                <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
-                    setBreakfastValid(true)
-                    setRestaurantState({...restaurantState, image: e.target.value})
-                    }}>
-                    <option key = 'blankChoice' hidden value> Breakfast Menu </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Control>
-
-                <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
-                    setLunchValid(true)
-                    setRestaurantState({...restaurantState, image: e.target.value})
-                    }}>
-                    <option key = 'blankChoice' hidden value> Lunch Menu </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Control>
-
-                <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
-                    setHoursValid(true)
-                    setRestaurantState({...restaurantState, image: e.target.value})
-                    }}>
-                    <option key = 'blankChoice' hidden value> Hours Menu </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Control>
-
-            </Stack>
-        </Form>
-
-    </Modal.Body>
-
-    <Modal.Footer>
-
-        <Button variant="secondary" onClick={() => {
-            setIsEditModal(false)
+        show={isEditModal}
+        onHide={() => {
+            setIsEditModal(false)  
             setEditRestaurant(null);
             }}>
-            Cancel
-        </Button>
 
-        <Button variant="primary"
-            onClick={ () => {
-                validationText();
-                validationSelect();
-                console.log(textValid)
-                console.log(selectValid)
-                if ((textValid) && (selectValid)){
-                editRestaurantModal()
-                }else{
-                    alert('Must Select All Files')
-            }}}
-        >
-            Edit
-        </Button>
+        <Modal.Header>
+            <Modal.Title>Edit Restaurant</Modal.Title>
+        </Modal.Header>
 
-    </Modal.Footer>
+        <Modal.Body>
+
+            <Form>
+                <Stack>
+                    <Form.Control 
+                        id="name" 
+                        placeholder="Restaurant Name" 
+                        type="text" 
+                        className="mb-1"
+                        value={ restaurantState?.name }
+                        onChange={ (e) => {
+                            setRestaurantState({
+                                ...restaurantState, 
+                                name: e.target.value
+                            })
+                        }}
+                    />
+                    <Form.Control 
+                        id="address" 
+                        placeholder="Restaurant Address" 
+                        type="text" 
+                        className="mb-1"
+                        value={ restaurantState?.address }
+                        onChange={ (e) => {
+                            setRestaurantState({
+                                ...restaurantState, 
+                                address: e.target.value
+                            })
+                        }}
+                    />
+                    <Form.Control 
+                        id="link" 
+                        placeholder="Restaurant Link" 
+                        type="text" 
+                        className="mb-1"
+                        value={ restaurantState?.link }
+                        onChange={ (e) => {
+                            setRestaurantState({
+                                ...restaurantState, 
+                                link: e.target.value
+                            })
+                        }}
+                    />
+
+                    <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
+                            setImageValid(true)
+                            setRestaurantState({...restaurantState, image: e.target.value})
+                            }}>
+                            <option key = 'blankChoice' hidden value> Image Status </option>
+                            <option value= "Added">Added</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                    </Form.Control>
+
+                    <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
+                        setBreakfastValid(true)
+                        setRestaurantState({...restaurantState, image: e.target.value})
+                        }}>
+                        <option key = 'blankChoice' hidden value> Breakfast Menu </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </Form.Control>
+
+                    <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
+                        setLunchValid(true)
+                        setRestaurantState({...restaurantState, image: e.target.value})
+                        }}>
+                        <option key = 'blankChoice' hidden value> Lunch Menu </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </Form.Control>
+
+                    <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
+                        setHoursValid(true)
+                        setRestaurantState({...restaurantState, image: e.target.value})
+                        }}>
+                        <option key = 'blankChoice' hidden value> Hours Menu </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </Form.Control>
+
+                </Stack>
+            </Form>
+
+        </Modal.Body>
+
+        <Modal.Footer>
+
+            <Button variant="secondary" onClick={() => {
+                setIsEditModal(false)
+                setEditRestaurant(null);
+                }}>
+                Cancel
+            </Button>
+
+            <Button variant="primary"
+                onClick={ () => {
+                    if ((validationText()) && (validationSelect())){
+                        setUpdate(true)
+                    editRestaurantModal()
+                    }else{
+                        alert('Must Complete All Files')
+                }}}
+            >
+                Edit
+            </Button>
+
+        </Modal.Footer>
 
     </Modal>
   )

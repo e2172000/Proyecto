@@ -14,9 +14,9 @@ async function loginEmailPassword(email, password) {
         writeUserLog("Log in", email);
 
         return result;
-    } catch (error) {
-        console.log(error);
-        return error;
+    } catch (e) {
+       const err = (`${e.message}`)
+       return err
     }
 
 }

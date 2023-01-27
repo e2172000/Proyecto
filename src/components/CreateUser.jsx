@@ -26,9 +26,14 @@ function CreateUser( {user} ) {
   async function registrarUsuario (email, password, rol) {
 
     //creamos al usuario y recibimos su informacion
-    const infoUsuario = await createUserWithEmailAndPassword(auth, email, password).then((usuarioFirebase) => {
-      return usuarioFirebase;
-    });
+    const infoUsuario = await createUserWithEmailAndPassword(auth, email, password)
+      .then((usuarioFirebase) => {
+        return usuarioFirebase;
+      })
+      .catch((e) => {
+        alert(e.message)
+        return e.message
+      });
 
     console.log(infoUsuario.user.uid);
 

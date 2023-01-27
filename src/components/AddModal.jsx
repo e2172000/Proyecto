@@ -1,3 +1,5 @@
+import React from 'react'
+
 //importamos estilos desde bootstrap
 import { Modal, Stack, Form, Button } from "react-bootstrap";
 
@@ -9,7 +11,7 @@ import { v4 as uuid } from 'uuid';
 
 
 
-function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
+function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpdate }) {
     //creamos la funcion para agragar nuevos restaurantes desde el modal
     function addRestaurantModal() {
 
@@ -33,6 +35,33 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
         setIsAddModal(false);
     }
 
+    //Creamos estados para verificar que los campos esten llenos en la validacion
+    const [imageValid2, setImageValid2] = React.useState(false)
+    const [breakfastValid2, setBreakfastValid2] = React.useState(false)
+    const [lunchValid2, setLunchValid2] = React.useState(false)
+    const [hoursValid2, setHoursValid2] = React.useState(false)
+
+    //validamos que los campos contengan texto
+    function validationText2() {
+  
+        const name = document.getElementById("name").value;
+        const address = document.getElementById("address").value;
+        const link = document.getElementById("link").value;
+
+        if ((name.length>0) && (address.length>0) && (link.length>0)){
+            return true
+        } else {
+            return false
+        }
+    }
+    //Validamos que los campos seleccionables no esten vacios
+    function validationSelect2() {
+        if ((imageValid2) && (breakfastValid2) && (lunchValid2) && (hoursValid2)){
+           return true
+        } else {
+            return false
+        }
+    }
 
   return (
     <Modal 
@@ -52,30 +81,38 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
                 <Form.Control id="address" placeholder="Restaurant Address" type="text" className="mb-1"/>
                 <Form.Control id="link" placeholder="Restaurant Link" type="text" className="mb-1"/>
 
-                <Form.Select id="image" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Image Status </option>
-                    <option value="Added">Added</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Select>
+                <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
+                            setImageValid2(true)
+                            }}>
+                            <option key = 'blankChoice' hidden value> Image Status </option>
+                            <option value= "Added">Added</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                    </Form.Control>
 
-                <Form.Select id="breakfast" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Breakfast Menu </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Select>
+                    <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
+                        setBreakfastValid2(true)
+                        }}>
+                        <option key = 'blankChoice' hidden value> Breakfast Menu </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </Form.Control>
 
-                <Form.Select id="lunch" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Lunch Menu </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Select>
+                    <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
+                        setLunchValid2(true)
+                        }}>
+                        <option key = 'blankChoice' hidden value> Lunch Menu </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </Form.Control>
 
-                <Form.Select id="hours" className="mb-1">
-                    <option key = 'blankChoice' hidden value> Hours Configuration </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </Form.Select>
+                    <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
+                        setHoursValid2(true)
+                        }}>
+                        <option key = 'blankChoice' hidden value> Hours Menu </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </Form.Control>
         
             </Stack>
         </Form>
@@ -89,7 +126,17 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user }) {
         </Button>
 
         <Button variant="primary"
-            onClick={ addRestaurantModal }
+            onClick={ () => {
+                if ((validationText2()) && (validationSelect2())){
+                    setUpdate(true)
+                    setImageValid2(false)
+                    setBreakfastValid2(false)
+                    setLunchValid2(false)
+                    setHoursValid2(false)
+                    addRestaurantModal()
+                }else{
+                    alert('Must Complete All Files')
+            }}}
         >
             Add
         </Button>

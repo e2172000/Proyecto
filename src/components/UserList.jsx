@@ -58,7 +58,7 @@ function UserList({ user }) {
             <Stack direction='horizontal'>
 
                 <Form.Group controlId='search' className='w-75 m-3'>
-                    <Form.Control type='text' placeholder='Search Restaurant Name'
+                    <Form.Control type='text' placeholder='Search...'
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </Form.Group>
@@ -69,7 +69,7 @@ function UserList({ user }) {
         
         <hr />
 
-        <Table id="userList">
+        <Table id="userList" striped bordered hover>
             
             <thead>
                 <tr>

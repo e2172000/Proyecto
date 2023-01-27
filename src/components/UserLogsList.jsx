@@ -57,14 +57,14 @@ function UserLogsList({ user }) {
         </div>
 
         <Form.Group controlId='search' className='w-75 m-3'>
-            <Form.Control type='text' placeholder='Search Restaurant Name'
+            <Form.Control type='text' placeholder='Search...'
                 onChange={(e) => setSearch(e.target.value)}
             />
         </Form.Group>
         
         <hr />
 
-        <Table id='userLogsList'>
+        <Table id='userLogsList' striped bordered hover>
             
             <thead>
                 <tr>

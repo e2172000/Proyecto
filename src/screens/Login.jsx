@@ -10,7 +10,7 @@ import loginEmailPassword from '../functions/loginEmailPassword';
 
 function Login() {
 
-  function submitHandler (e)  {
+  async function submitHandler (e)  {
     e.preventDefault();
 
     const email = e.target.elements.email.value;
@@ -19,8 +19,11 @@ function Login() {
     console.log("submit", email, password);
 
     //llamando  a la funcion de loginEmailPassword
-    loginEmailPassword(email, password);
+    const result = await loginEmailPassword(email, password);
 
+    if (result.length>0){
+        alert(result)
+    }
   }
  
   return (
@@ -51,10 +54,6 @@ function Login() {
         </Button>
 
       </Form>
-
-      
-    
-      
 
     </Container>
   )

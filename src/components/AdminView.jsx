@@ -23,6 +23,7 @@ function AdminView({ user }) {
 
   //Estado paraactualizar los productos luego de editar 
   const [update, setUpdate] = React.useState();
+  //console.log(update)
 
   //creamos un estado para mostrar el modal para agregar nuevos restaurantes
   const [isAddModal, setIsAddModal] = React.useState(false);
@@ -65,6 +66,7 @@ function AdminView({ user }) {
         setIsAddModal={ setIsAddModal }
         updateStateProducts={ updateStateProducts }
         user={ user }
+        setUpdate= { setUpdate }
       />
 
       { editRestaurant && (
@@ -120,7 +122,7 @@ function AdminView({ user }) {
 
     <hr />
 
-    <Table id='restaurantList'>
+    <Table id='restaurantList' striped bordered hover>
 
       <thead>
         <tr>
