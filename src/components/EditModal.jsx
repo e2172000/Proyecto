@@ -142,7 +142,7 @@ function EditModal({
 
                     <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
                         setBreakfastValid(true)
-                        setRestaurantState({...restaurantState, image: e.target.value})
+                        setRestaurantState({...restaurantState, breakfast: e.target.value})
                         }}>
                         <option key = 'blankChoice' hidden value> Breakfast Menu </option>
                         <option value="Yes">Yes</option>
@@ -151,7 +151,7 @@ function EditModal({
 
                     <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
                         setLunchValid(true)
-                        setRestaurantState({...restaurantState, image: e.target.value})
+                        setRestaurantState({...restaurantState, lunch: e.target.value})
                         }}>
                         <option key = 'blankChoice' hidden value> Lunch Menu </option>
                         <option value="Yes">Yes</option>
@@ -160,7 +160,7 @@ function EditModal({
 
                     <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
                         setHoursValid(true)
-                        setRestaurantState({...restaurantState, image: e.target.value})
+                        setRestaurantState({...restaurantState, hours: e.target.value})
                         }}>
                         <option key = 'blankChoice' hidden value> Hours Menu </option>
                         <option value="Yes">Yes</option>
@@ -185,7 +185,8 @@ function EditModal({
                 onClick={ () => {
                     if ((validationText()) && (validationSelect())){
                         setUpdate(true)
-                    editRestaurantModal()
+                    editRestaurantModal();
+                    updateStateProducts();
                     }else{
                         alert('Must Complete All Files')
                 }}}

@@ -122,19 +122,20 @@ function AdminView({ user }) {
 
     <hr />
 
-    <Table id='restaurantList' striped bordered hover>
+    <Table id='restaurantList' striped bordered hover responsive>
 
       <thead>
         <tr>
           <th>#</th>
-          <th>Restaurant Name</th>
-          <th>Address</th>
-          <th>Restaurant Link</th>
-          <th>Images</th>
-          <th>Breakfast</th>
-          <th>Lunch</th>
-          <th>Menu Hours</th>
-          <th>Options</th>
+          <th width="15%">Restaurant Name</th>
+          <th width="20%">Address</th>
+          <th width="15%">Restaurant Link</th>
+          <th width="5%">Images</th>
+          <th width="5%">Breakfast</th>
+          <th width="5%">Lunch</th>
+          <th width="5%">Menu Hours</th>
+          <th width="10%">Status</th>
+          <th width="10%">Options</th>
         </tr>
       </thead>
 
@@ -153,6 +154,17 @@ function AdminView({ user }) {
             <td>{restaurant.breakfast}</td>
             <td>{restaurant.lunch}</td>
             <td>{restaurant.hours}</td>
+
+            <td>
+              <Form.Control id='hours' className="mb-1" as='select' >
+                <option key = 'blankChoice' hidden value> Status </option>
+                <option value="Done">Done</option>
+                <option value="On-Going">On-Going</option>
+                <option value="On-Hold">On-Hold</option>
+                <option value="Recheck">Recheck</option>
+              </Form.Control>
+            </td>
+
             <td>
 
               <Button variant='dark' 
