@@ -27,10 +27,11 @@ function EditModal({
         const breakfast = document.getElementById("breakfast").value;
         const lunch = document.getElementById("lunch").value;
         const hours = document.getElementById("hours").value;
+        const status = document.getElementById("status").value;
         const unique_id = restaurantState.unique_id;
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours,unique_id};
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours, status,unique_id};
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         editRes(infoRestaurant, user.email);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 
@@ -73,6 +74,9 @@ function EditModal({
             return false
         }
     }
+
+    
+
 
   return (
     <Modal 
@@ -130,7 +134,8 @@ function EditModal({
                         }}
                     />
 
-                    <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
+                    <Form.Control id='image' className="mb-1" as='select' value={restaurantState?.image} 
+                    onChange={ (e) => {
                             setImageValid(true)
                             setRestaurantState({...restaurantState, image: e.target.value})
                             }}>
@@ -140,7 +145,8 @@ function EditModal({
                             <option value="No">No</option>
                     </Form.Control>
 
-                    <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
+                    <Form.Control id='breakfast' className="mb-1" as='select' 
+                    onChange={ (e) => {
                         setBreakfastValid(true)
                         setRestaurantState({...restaurantState, breakfast: e.target.value})
                         }}>
@@ -149,7 +155,8 @@ function EditModal({
                         <option value="No">No</option>
                     </Form.Control>
 
-                    <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
+                    <Form.Control id='lunch' className="mb-1" as='select' 
+                    onChange={ (e) => {
                         setLunchValid(true)
                         setRestaurantState({...restaurantState, lunch: e.target.value})
                         }}>
@@ -158,13 +165,26 @@ function EditModal({
                         <option value="No">No</option>
                     </Form.Control>
 
-                    <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
+                    <Form.Control id='hours' className="mb-1" as='select' 
+                    onChange={ (e) => {
                         setHoursValid(true)
                         setRestaurantState({...restaurantState, hours: e.target.value})
                         }}>
                         <option key = 'blankChoice' hidden value> Hours Menu </option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
+                    </Form.Control>
+
+                    <Form.Control id='status' className="mb-1" as='select' 
+                    onChange={ (e) =>{
+                        //setHoursValid(true)
+                        setRestaurantState({...restaurantState, status: e.target.value})
+                        }}>
+                        <option key = 'blankChoice' hidden value> Menu Status </option>
+                        <option value="Assigned">Assigned</option>
+                        <option value="Completed">Completed</option>
+                        <option value="On-Going">On-Going</option>
+                        <option value="On-Hold">On-Hold</option>
                     </Form.Control>
 
                 </Stack>

@@ -122,7 +122,7 @@ function AdminView({ user }) {
 
     <hr />
 
-    <Table id='restaurantList' striped bordered hover responsive>
+    <Table id='restaurantList' striped bordered hover responsive="sm">
 
       <thead>
         <tr>
@@ -155,15 +155,7 @@ function AdminView({ user }) {
             <td>{restaurant.lunch}</td>
             <td>{restaurant.hours}</td>
 
-            <td>
-              <Form.Control id='hours' className="mb-1" as='select' >
-                <option key = 'blankChoice' hidden value> Status </option>
-                <option value="Done">Done</option>
-                <option value="On-Going">On-Going</option>
-                <option value="On-Hold">On-Hold</option>
-                <option value="Recheck">Recheck</option>
-              </Form.Control>
-            </td>
+            <td>{restaurant.status}</td>
 
             <td>
 
