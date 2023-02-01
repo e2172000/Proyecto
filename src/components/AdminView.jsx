@@ -23,7 +23,6 @@ function AdminView({ user }) {
 
   //Estado paraactualizar los productos luego de editar 
   const [update, setUpdate] = React.useState();
-  //console.log(update)
 
   //creamos un estado para mostrar el modal para agregar nuevos restaurantes
   const [isAddModal, setIsAddModal] = React.useState(false);
@@ -127,15 +126,15 @@ function AdminView({ user }) {
       <thead>
         <tr>
           <th>#</th>
-          <th width="15%">Restaurant Name</th>
-          <th width="20%">Address</th>
-          <th width="15%">Restaurant Link</th>
-          <th width="5%">Images</th>
-          <th width="5%">Breakfast</th>
-          <th width="5%">Lunch</th>
-          <th width="5%">Menu Hours</th>
-          <th width="10%">Status</th>
-          <th width="10%">Options</th>
+          <th >Restaurant Name</th>
+          <th >Address</th>
+          <th >Restaurant Link</th>
+          <th >Images</th>
+          <th >Breakfast</th>
+          <th >Lunch</th>
+          <th >Menu Hours</th>
+          <th >Status</th>
+          <th >Options</th>
         </tr>
       </thead>
 
@@ -154,7 +153,6 @@ function AdminView({ user }) {
             <td>{restaurant.breakfast}</td>
             <td>{restaurant.lunch}</td>
             <td>{restaurant.hours}</td>
-
             <td>{restaurant.status}</td>
 
             <td>

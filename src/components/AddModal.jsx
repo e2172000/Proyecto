@@ -23,10 +23,11 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
         const breakfast = document.getElementById("breakfast").value;
         const lunch = document.getElementById("lunch").value;
         const hours = document.getElementById("hours").value;
+        const status = document.getElementById("status").value;
         const unique_id = uuid();
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba addRestaurant
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours, unique_id}
+        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours, status, unique_id}
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         addRestaurant(infoRestaurant, user.email);
         //actualizamos el estado de los datos de  la bd para que al agregar un restaurante desde el modal se actualize y lo muestre en pantalla 
@@ -36,10 +37,11 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     }
 
     //Creamos estados para verificar que los campos esten llenos en la validacion
-    const [imageValid2, setImageValid2] = React.useState(false)
-    const [breakfastValid2, setBreakfastValid2] = React.useState(false)
-    const [lunchValid2, setLunchValid2] = React.useState(false)
-    const [hoursValid2, setHoursValid2] = React.useState(false)
+    const [imageValid, setImageValid] = React.useState(false)
+    const [breakfastValid, setBreakfastValid] = React.useState(false)
+    const [lunchValid, setLunchValid] = React.useState(false)
+    const [hoursValid, setHoursValid] = React.useState(false)
+    const [statusValid, setStatusValid] = React.useState(false)
 
     //validamos que los campos contengan texto
     function validationText2() {
@@ -55,8 +57,16 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
         }
     }
     //Validamos que los campos seleccionables no esten vacios
-    function validationSelect2() {
-        if ((imageValid2) && (breakfastValid2) && (lunchValid2) && (hoursValid2)){
+    function validationSelect() {
+        if ((imageValid) && (breakfastValid) && (lunchValid) && (hoursValid)){
+           return true
+        } else {
+            return false
+        }
+    }
+
+    function validationStatus() {
+        if ((statusValid)){
            return true
         } else {
             return false
@@ -76,13 +86,18 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
 
         <Form>
             <Stack>
-
+                <Form.Label>Restaurant Name:</Form.Label>
                 <Form.Control id="name" placeholder="Restaurant Name" type="text" className="mb-1"/>
+
+                <Form.Label>Restaurant Address:</Form.Label>
                 <Form.Control id="address" placeholder="Restaurant Address" type="text" className="mb-1"/>
+
+                <Form.Label>Restaurant Link:</Form.Label>
                 <Form.Control id="link" placeholder="Restaurant Link" type="text" className="mb-1"/>
 
+                <Form.Label>Image Status:</Form.Label> 
                 <Form.Control id='image' className="mb-1" as='select' onChange={ (e) => {
-                            setImageValid2(true)
+                            setImageValid(true)
                             }}>
                             <option key = 'blankChoice' hidden value> Image Status </option>
                             <option value= "Added">Added</option>
@@ -90,28 +105,43 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
                             <option value="No">No</option>
                     </Form.Control>
 
+                    <Form.Label>Breakfast Menu:</Form.Label>
                     <Form.Control id='breakfast' className="mb-1" as='select' onChange={ (e) => {
-                        setBreakfastValid2(true)
+                        setBreakfastValid(true)
                         }}>
                         <option key = 'blankChoice' hidden value> Breakfast Menu </option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </Form.Control>
 
+                    <Form.Label>Lunch Menu:</Form.Label> 
                     <Form.Control id='lunch' className="mb-1" as='select' onChange={ (e) => {
-                        setLunchValid2(true)
+                        setLunchValid(true)
                         }}>
                         <option key = 'blankChoice' hidden value> Lunch Menu </option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </Form.Control>
 
+                    <Form.Label>Hours Configuration:</Form.Label>
                     <Form.Control id='hours' className="mb-1" as='select' onChange={ (e) => {
-                        setHoursValid2(true)
+                        setHoursValid(true)
                         }}>
                         <option key = 'blankChoice' hidden value> Hours Menu </option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
+                    </Form.Control>
+
+                    <Form.Label>Menu Status:</Form.Label> 
+                    <Form.Control id='status' className="mb-1" as='select' 
+                    onChange={ (e) =>{
+                        setStatusValid(true)
+                        }}>
+                        <option key = 'blankChoice' hidden value> Menu Status </option>
+                        <option value="Assigned">Assigned</option>
+                        <option value="Completed">Completed</option>
+                        <option value="On-Going">On-Going</option>
+                        <option value="On-Hold">On-Hold</option>
                     </Form.Control>
         
             </Stack>
@@ -127,12 +157,13 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
 
         <Button variant="primary"
             onClick={ () => {
-                if ((validationText2()) && (validationSelect2())){
+                if ((validationText2()) && (validationSelect()) && (validationStatus())){
                     setUpdate(true)
-                    setImageValid2(false)
-                    setBreakfastValid2(false)
-                    setLunchValid2(false)
-                    setHoursValid2(false)
+                    setImageValid(false)
+                    setBreakfastValid(false)
+                    setLunchValid(false)
+                    setHoursValid(false)
+                    setStatusValid(false)
                     addRestaurantModal()
                 }else{
                     alert('Must Complete All Files')

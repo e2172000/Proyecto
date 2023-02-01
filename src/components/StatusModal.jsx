@@ -7,31 +7,23 @@ import { Modal, Stack, Form, Button } from "react-bootstrap";
 import editRes from '../functions/editRestaurant';
 
 
-function EditModal({ 
-    isEditModal, 
-    setIsEditModal, 
+function StatusModal({ 
+    isStatusModal, 
+    setIsStatusModal, 
     updateStateProducts, 
-    editRestaurant,
-    setEditRestaurant,
+    editStatus,
+    setEditStatus,
     user,
     setUpdate
     }) {
     //creamos la funcion para editar restaurantes desde el modal
-    function editRestaurantModal() {
+    function editStatusModal() {
 
         //obtener la informacion del formulario del modal
-        const name = document.getElementById("name").value;
-        const address = document.getElementById("address").value;
-        const link = document.getElementById("link").value;
-        const image = document.getElementById("image").value;
-        const breakfast = document.getElementById("breakfast").value;
-        const lunch = document.getElementById("lunch").value;
-        const hours = document.getElementById("hours").value;
         const status = document.getElementById("status").value;
-        const unique_id = restaurantState.unique_id;
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
-        const infoRestaurant = { name, address, link, image, breakfast, lunch, hours, status,unique_id};
+        const infoRestaurant = { status };
         //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
         editRes(infoRestaurant, user.email);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 
@@ -207,4 +199,4 @@ function EditModal({
   )
 }
 
-export default EditModal;
+export default StatusModal;

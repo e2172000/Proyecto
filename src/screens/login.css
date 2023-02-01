@@ -1,0 +1,44 @@
+.login{
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    padding: 0px;
+    margin: 0px;
+    font-family:fantasy;
+}
+
+.encabezado{
+    width: 100%;
+}
+
+.encabezado .login {
+    width: 100%;
+}
+
+.title{
+    color: white;
+    font-family:fantasy;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.form-label{
+    color: white;
+    font-size: 18px;
+}
+
+.form-control{
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.button{
+        border-color: rgba(300,49,51,255);
+        background-color: rgba(150,24,2,255);
+        border-radius: 8px;
+        width: 100%;
+        height: 50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
+import './login.css';
+import logo from '../images/logo.png'
 
 //importamos estilos desde bootstrap
-import { Container, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 //importamos la funcion de loginEmailPassword
 import loginEmailPassword from '../functions/loginEmailPassword';
@@ -27,35 +29,37 @@ function Login() {
   }
  
   return (
-    <Container>
+    <div className='login'>
+      
+    <div className='encabezado'>
+        <img src={logo} alt="logo" width='100%' />
+        <h1 className='title'> Welcome</h1>
+    </div>
 
-      <h1> Login // Iniciar Sesion</h1>
+    <Form onSubmit={ submitHandler } >
 
-      <Form onSubmit={ submitHandler }>
+      <Form.Group controlId='email'>
+        <Form.Label>Email Address</Form.Label>
+        <Form.Control type="email" placeholder='Enter email'/>
+      </Form.Group>
 
-        <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control type="email" placeholder='Enter email'/>
-        </Form.Group>
+      <Form.Group controlId='password'>
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder='Password'/>
+      </Form.Group>
 
-        <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder='Password'/>
-        </Form.Group>
+  <br/>
 
-        <br/>
+  <button className='button'
+    type="submit"
+    //value={ isRegistrando ? "Registrar" : "Iniciar Sesion" } Colocamos el value fuera al implementar bootstrap
+    >
+      Login
+  </button>
 
-        <Button
-          variant='primary'
-          type="submit"
-          //value={ isRegistrando ? "Registrar" : "Iniciar Sesion" } Colocamos el value fuera al implementar bootstrap
-          >
-            Login
-        </Button>
+</Form>
 
-      </Form>
-
-    </Container>
+    </div>
   )
 }
 

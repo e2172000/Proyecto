@@ -1,8 +1,14 @@
 /* ESTO RESETEA/CANCELA TODOS LOS ESTILOS QUE PROVEE EL NAVEGADOR */
 
 html,
-body,
-div,
+body{
+  width: 100%;
+  margin: 0px;
+  background-color: rgba(239,49,51,255);
+}
+div{
+  background-color: rgba(239,49,51,255);
+}
 span,
 applet,
 object,
