@@ -1,0 +1,22 @@
+.home{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 100%;
+}
+
+.navbar-brand{
+    width: 75%;
+}
+
+.button{
+    border-color: rgba(300,49,51,255);
+    background-color: rgba(150,24,2,255);
+    border-radius: 8px;
+    margin-top: 70px;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 100px ;
+    align-self: center;
+}

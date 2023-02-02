@@ -1,9 +1,10 @@
 import React from 'react';
+import './AdminView.css';
 
-import {Link} from 'react-router-dom'
+
 
 //importamos estilos desde bootstrap
-import { Container, Stack, Button, Form, Table } from "react-bootstrap"
+import { Container, Stack, Form, Table } from "react-bootstrap"
 
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';
@@ -17,6 +18,7 @@ import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 import AddModal from './AddModal';
 //Modal para editar restaurantes
 import EditModal from './EditModal';
+import NavAdmin from './NavAdmin';
 
 
 function AdminView({ user }) {
@@ -81,34 +83,32 @@ function AdminView({ user }) {
       )}
       
       <Stack>
-        <p style={{ fontSize: 24}}> 
-          Hola Admin, { user.email }
+        <p className='saludos'> 
+          {`Hi! Welcome   ${user.email}`  }
         </p>
       </Stack>
 
-      <div className="btn-group" role="group" aria-label="Basic example">
-      <Button onClick={ addRestaurantAdmin }>Add Restaurant</Button>
+      <div>
+      
+        <NavAdmin/>
 
-      <Link to={`/admin/create`} className="btn btn-primary"> Create New User </Link>
-      <Link to={`/admin/UserList`} className="btn btn-info"> User List </Link>
-      <Link to={`/admin/restaurantLogsList`} className="btn btn-info"> Restaurant Logs </Link>
-      <Link to={`/admin/userLogsList`} className="btn btn-info"> Users Logs </Link>
+        <button className="add" onClick={ addRestaurantAdmin }>Add Restaurant</button>
 
       <ReactHtmlTableToExcel 
-      id="downloadButton"
-      className="btn btn-success"
-      table="restaurantList"
-      filename="RestaurantList"
-      sheet="San Marcos"
-      buttonText="Download Restaurant List"
-      />
+        id="downloadButton"
+        className="btn btn-success"
+        table="restaurantList"
+        filename="RestaurantList"
+        sheet="San Marcos"
+        buttonText="Download Restaurant List"
+        />
 
       </div>
 
-      <hr />
+      <hr/>
 
-      <Form >
-        <Stack direction='horizontal'>
+      <Form  >
+        <Stack direction='horizontal' >
 
           <Form.Group controlId='search' className='w-75 m-3'>
             <Form.Control type='text' placeholder='Search...'
@@ -124,7 +124,7 @@ function AdminView({ user }) {
     <Table id='restaurantList' striped bordered hover variant='dark'>
 
       <thead>
-        <tr>
+        <tr >
           <th>#</th>
           <th >Restaurant Name</th>
           <th >Address</th>
@@ -157,20 +157,20 @@ function AdminView({ user }) {
 
             <td>
 
-              <Button variant='dark' 
+              <button className='edit' variant='dark' 
                 onClick={() =>  {
                   setEditRestaurant({ ...restaurant });
                   setIsEditModal(true);
                   }
                 }>
-              Edit</Button>
+              Edit</button>
 
-              <Button variant='danger' onClick={ () => { 
+              <button className='delete' onClick={ () => { 
                 deleteRestaurantAdmin({...restaurant}, user.email).then(
                   (confirmacion) => {
                     updateStateProducts();
                   });
-              }}>Delete</Button>
+              }}>Delete</button>
 
             </td>
 

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
+import NavAdmin from './NavAdmin';
 
 //importamos estilos desde bootstrap
 import { Container, Stack, Form, Table } from 'react-bootstrap';
@@ -31,6 +32,9 @@ function UserList({ user }) {
     
 
   return (
+    <>
+    <NavAdmin/>
+
     <Container fluid>
 
         <Stack direction='horizontal' className='justify-content-between'>
@@ -99,6 +103,7 @@ function UserList({ user }) {
 
 
     </Container>
+    </>
   )
 }
 

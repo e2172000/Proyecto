@@ -1,6 +1,8 @@
 /* ESTO RESETEA/CANCELA TODOS LOS ESTILOS QUE PROVEE EL NAVEGADOR */
 
-html,
+html{
+  background-color: rgba(239,49,51,255);
+}
 body{
   width: 100%;
   margin: 0px;
@@ -128,4 +130,5 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+
 }

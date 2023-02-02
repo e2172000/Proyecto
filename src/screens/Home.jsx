@@ -1,7 +1,9 @@
 import React from 'react';
+import logo_vistas from '../images/logo_vistas.png';
+import './home.css';
 
 //importamos estilos desde bootstrap
-import { Button, Container, Stack } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 
 //importamos las vistas para administrador y usuario
 import AdminView from "../components/AdminView";
@@ -20,20 +22,25 @@ const auth = getAuth(firebaseApp);
 
 function Home( {user} ) {
   return (
-    <Container fluid>
-      <Stack direction='horizontal' className='justify-content-between'>
-        <p style={{ fontSize: 24}}>
-          Home Develop
-        </p>
-        <Button onClick={() => {
-          writeUserLog("Sign Out", user.email);
-          signOut(auth);
-          }}>Sign Out</Button>
-      </Stack>
+    <div className='home'>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand><img src={logo_vistas} alt="logo" width='20%' /></Navbar.Brand>
+          <Nav >
+            <button className='button' onClick={() => {
+              writeUserLog("Sign Out", user.email);
+              signOut(auth);
+            }}>Sign Out</button>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <Container fluid>
       
       { user.rol === "admin" ? <AdminView user={ user }/> : <UserView user={ user }/> }
 
-    </Container>
+      </Container>
+  </div>
   )
 }
 

@@ -12,6 +12,7 @@ import writeUserLog from '../functions/writeUserLog';
 import firebaseApp from "../firebase/credenciales";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import NavAdmin from './NavAdmin';
 
 //inicializamos auth y firestore
 const auth = getAuth(firebaseApp);
@@ -65,7 +66,11 @@ function CreateUser( {user} ) {
   
 
   return (
+    <>
+
+      <NavAdmin/>
     <Container>
+
 
       <Stack direction='horizontal' className='justify-content-between'> 
 
@@ -113,6 +118,7 @@ function CreateUser( {user} ) {
 
       
       </Container>
+      </>
   )
 }
 

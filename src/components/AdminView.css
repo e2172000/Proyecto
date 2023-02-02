@@ -1,0 +1,47 @@
+.saludos{
+    font-size: 24px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+    margin: 30px;
+    text-align: center;
+    color: white;
+}
+
+#restaurantList{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+}
+
+#restaurantList thead tr th{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.edit{
+        border-color: rgba(300,49,51,255);
+        background-color: white;
+        border-radius: 8px;
+        width: 100%;
+        height: 50px;
+        color: rgba(150,24,2,255);
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 5px;
+}
+
+.delete{
+    border-color: rgba(300,49,51,255);
+    background-color: rgba(150,24,2,255);
+    border-radius: 8px;
+    width: 100%;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+
+.add{
+    width: 25%;
+}
