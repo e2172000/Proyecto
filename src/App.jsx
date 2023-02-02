@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom"
+import './styles/page.css'
 
 //importamos estilos desde bootstrap
 import { Container } from "react-bootstrap";
@@ -83,7 +84,7 @@ function setUserFirebase(usuarioFirebase) {
     <>
    
 
-    <Container>
+    <Container className="page">
       <BrowserRouter>
           <Routes>
             
@@ -102,6 +103,7 @@ function setUserFirebase(usuarioFirebase) {
                 
 
             <Route element={ <NotFound /> } path="*" />
+
           </Routes>
       </BrowserRouter>
     </Container>

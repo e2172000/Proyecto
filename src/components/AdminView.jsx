@@ -81,22 +81,20 @@ function AdminView({ user }) {
           setUpdate= { setUpdate }
         />
       )}
-      
+              <NavAdmin user={user}/>
       <Stack>
         <p className='saludos'> 
           {`Hi! Welcome   ${user.email}`  }
         </p>
       </Stack>
 
-      <div>
+      <div className="adminView">
       
-        <NavAdmin/>
-
-        <button className="add" onClick={ addRestaurantAdmin }>Add Restaurant</button>
+        <button className="add button-admin" onClick={ addRestaurantAdmin }>Add Restaurant</button>
 
       <ReactHtmlTableToExcel 
         id="downloadButton"
-        className="btn btn-success"
+        className="button-admin"
         table="restaurantList"
         filename="RestaurantList"
         sheet="San Marcos"

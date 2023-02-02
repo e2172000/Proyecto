@@ -1,4 +1,5 @@
 import React from 'react'
+import './UserLogsList.css'
 
 import { Link } from 'react-router-dom'
 
@@ -9,6 +10,8 @@ import { Container, Stack, Form, Table } from 'react-bootstrap';
 import getAllUserLogs from '../functions/getAllUserLogs';
 //Importamos la libreria para poder descargar los reportes en formato de tabla 
 import ReactHtmlTableToExcel from 'react-html-table-to-excel';
+import NavAdmin from './NavAdmin';
+import Footer from './Footer';
 
  
 
@@ -35,20 +38,24 @@ function UserLogsList({ user }) {
   return (
     <Container fluid>
 
-        <Stack direction='horizontal' className='justify-content-between'>
+        <NavAdmin user={user}/>
 
-            <p style={{ fontSize: 24}}> 
-                Admin UserLogs, { user.email }
-            </p>
+            <Stack>
+                <p className='saludos'> 
+                    {user.email} 
+                </p>
+            </Stack>
 
-            <Link to={`/`} className="btn btn-primary"> Go Back to Restaurant List </Link>
+        <hr></hr>
 
-        </Stack>
+        <p className='title-log'> Users Logs </p>
 
-        <div>
+        <hr></hr>
+
+        <div className='download'>
             <ReactHtmlTableToExcel 
                 id="downloadButton"
-                className="btn btn-success"
+                className="button-logs"
                 table="userLogsList"
                 filename="UserLogsList"
                 sheet="User Logs"
@@ -94,7 +101,7 @@ function UserLogsList({ user }) {
             </tbody>
         </Table>
 
-
+        <Footer/>
     </Container>
   )
 }

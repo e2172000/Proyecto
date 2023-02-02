@@ -1,6 +1,6 @@
 import React from 'react'
+import './UserList.css'
 
-import { Link } from 'react-router-dom'
 import NavAdmin from './NavAdmin';
 
 //importamos estilos desde bootstrap
@@ -10,6 +10,7 @@ import { Container, Stack, Form, Table } from 'react-bootstrap';
 import getAllUsers from '../functions/getAllUsers';
 //Importamos la libreria para poder descargar los reportes en formato de tabla 
 import ReactHtmlTableToExcel from 'react-html-table-to-excel';
+import Footer from './Footer';
 
 function UserList({ user }) {
 
@@ -33,30 +34,20 @@ function UserList({ user }) {
 
   return (
     <>
-    <NavAdmin/>
+    <NavAdmin user={user}/>
 
     <Container fluid>
+            <Stack>
+        <p className='saludos'> 
+          {user.email} 
+        </p>
+      </Stack>
 
-        <Stack direction='horizontal' className='justify-content-between'>
+         <hr></hr>
+    
+      <p className='title-list'> User List </p>
 
-            <p style={{ fontSize: 24}}> 
-                Admin UserList, { user.email }
-            </p>
-
-            <Link to={`/`} className="btn btn-primary"> Go Back to Restaurant List </Link>
-
-        </Stack>
-
-        <div>
-            <ReactHtmlTableToExcel 
-                id="downloadButton"
-                className="btn btn-success"
-                table="userList"
-                filename="UserList"
-                sheet="San Marcos Users"
-                buttonText="Download User List"
-            />
-        </div>
+      <hr></hr>
 
         <Form>
             <Stack direction='horizontal'>
@@ -70,6 +61,19 @@ function UserList({ user }) {
                 
             </Stack>
         </Form>
+
+        <div className='download'>
+        <ReactHtmlTableToExcel 
+                id="downloadButton"
+                className="button-list"
+                table="userList"
+                filename="UserList"
+                sheet="San Marcos Users"
+                buttonText="Download User List"
+            />
+       </div>
+
+
         
         <hr />
 
@@ -101,7 +105,7 @@ function UserList({ user }) {
             </tbody>
         </Table>
 
-
+        <Footer/>
     </Container>
     </>
   )

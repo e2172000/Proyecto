@@ -1,0 +1,50 @@
+.saludos{
+    font-size: 24px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+    text-align: right;
+    color: white;
+}
+
+.title-log{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 7px 7px rgba(150,24,2,255);
+
+}
+
+.download{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.button-logs{
+    border-color: rgba(300,49,51,255);
+    background-color: rgba(150,24,2,255);
+    border-radius: 8px;
+    width: 25%;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.button-list:hover{
+    transform: scale(1.1,1.1);
+    border-color: white;
+    background-color: black;
+}
+
+#restaurantLogsList{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#restaurantLogsList thead tr th{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}

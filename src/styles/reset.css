@@ -2,14 +2,19 @@
 
 html{
   background-color: rgba(239,49,51,255);
+  margin: 0px;
+  padding: 0px;
 }
 body{
   width: 100%;
   margin: 0px;
   background-color: rgba(239,49,51,255);
+  padding: 0px;
 }
 div{
   background-color: rgba(239,49,51,255);
+  margin: 0px;
+  padding: 0px;
 }
 span,
 applet,
@@ -76,14 +81,18 @@ details,
 embed,
 figure,
 figcaption,
-footer,
+footer{
+  margin: 0px;
+}
 header,
 hgroup,
 menu,
 nav,
 output,
 ruby,
-section,
+section {
+  margin:0px;
+}
 summary,
 time,
 mark,
@@ -108,9 +117,12 @@ menu,
 nav,
 section {
   display: block;
+  margin: 0;
+  padding: 0;
 }
 body {
   line-height: 1;
+  margin: 0px;
 }
 ol,
 ul {
