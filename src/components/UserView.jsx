@@ -119,7 +119,7 @@ function UserView( {user} ) {
               <Button variant='dark' 
                 onClick={() =>  {
                   setEditStatus({ ...restaurant });
-                  isStatusModal(true);
+                  setIsStatusModal(true);
                   }
                 }>
               Change Status</Button>

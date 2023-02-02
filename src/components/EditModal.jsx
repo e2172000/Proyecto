@@ -32,7 +32,7 @@ function EditModal({
 
         //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
         const infoRestaurant = { name, address, link, image, breakfast, lunch, hours, status,unique_id};
-        //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
+        //con la informacion almacenada en un objeto podemos correr la funcion de editRestaurant
         editRes(infoRestaurant, user.email);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 
         setEditRestaurant(null);
