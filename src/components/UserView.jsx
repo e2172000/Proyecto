@@ -41,6 +41,7 @@ function UserView( {user} ) {
     setRestaurants();
     setIsStatusModal()
     setEditStatus();
+    setUpdate();
   }, []);
 
   return (
@@ -86,7 +87,7 @@ function UserView( {user} ) {
 
     <hr />
 
-    <Table id='restaurantList' striped bordered hover>
+    <Table id='restaurantList' striped bordered hover variant='dark'>
 
       <thead>
         <tr>

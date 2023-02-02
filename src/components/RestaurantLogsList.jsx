@@ -65,7 +65,7 @@ function RestaurantLogsList({ user }) {
         
         <hr />
 
-        <Table id="restaurantLogsList" striped bordered hover>
+        <Table id="restaurantLogsList" striped bordered hover variant='dark'>
             
             <thead>
                 <tr>

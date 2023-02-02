@@ -4,7 +4,7 @@
     align-content: center;
     padding: 0px;
     margin: 0px;
-    font-family:fantasy;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .encabezado{
@@ -17,7 +17,7 @@
 
 .title{
     color: white;
-    font-family:fantasy;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding-top: 20px;
     text-align: center;
 }
@@ -41,4 +41,5 @@
         color: white;
         font-weight: bold;
         font-size: 20px;
+        margin-bottom: 100px ;
 }

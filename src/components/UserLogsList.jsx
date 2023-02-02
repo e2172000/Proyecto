@@ -64,7 +64,7 @@ function UserLogsList({ user }) {
         
         <hr />
 
-        <Table id='userLogsList' striped bordered hover>
+        <Table id='userLogsList' striped bordered hover variant='dark'>
             
             <thead>
                 <tr>

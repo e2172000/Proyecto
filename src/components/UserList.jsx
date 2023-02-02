@@ -69,7 +69,7 @@ function UserList({ user }) {
         
         <hr />
 
-        <Table id="userList" striped bordered hover>
+        <Table id="userList" striped bordered hover variant='dark'>
             
             <thead>
                 <tr>

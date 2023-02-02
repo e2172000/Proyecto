@@ -121,7 +121,7 @@ function AdminView({ user }) {
 
     <hr />
 
-    <Table id='restaurantList' striped bordered hover responsive="sm">
+    <Table id='restaurantList' striped bordered hover variant='dark'>
 
       <thead>
         <tr>

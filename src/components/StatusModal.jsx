@@ -44,7 +44,6 @@ function StatusModal({
         ...editStatus,
     });
 
-    console.log(restaurantState)
 
   return (
     <>
