@@ -11,13 +11,13 @@ import {  Nav, NavItem, Navbar, Container } from "react-bootstrap"
 import writeUserLog from '../functions/writeUserLog';
 
 //importamos desde firebase
-import firebaseApp from "../firebase/credenciales";
+import firebaseApp from '../firebase/credenciales';
 import { getAuth, signOut } from "firebase/auth";
 
 //inicializamos auth
 const auth = getAuth(firebaseApp);
 
-function NavAdmin (user) {
+function NavAdmin ( {user} ) {
 
 return (
   <>

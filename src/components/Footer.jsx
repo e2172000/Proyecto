@@ -7,12 +7,12 @@ function Footer () {
 
             <div className="rrss">
                 <div className="mail">
-                    <p> bonapettit@gmail.com </p>
+                    <p> bonappetit@gmail.com </p>
                 </div>
             </div>
 
             <div className="derechos">
-                <p> Copyright © 2023 Todos los derechos reservados.</p>
+                <p> Copyright © 2023 All Rights Reserved.</p>
             </div>
     
         </section>

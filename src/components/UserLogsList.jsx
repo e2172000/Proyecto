@@ -1,7 +1,6 @@
-import React from 'react'
-import './UserLogsList.css'
+import React from 'react';
+import './UserLogsList.css';
 
-import { Link } from 'react-router-dom'
 
 //importamos estilos desde bootstrap
 import { Container, Stack, Form, Table } from 'react-bootstrap';

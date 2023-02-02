@@ -169,6 +169,7 @@ function EditModal({
                         }}>
                         <option key = 'blankChoice' hidden value> Menu Status </option>
                         <option value="Assigned">Assigned</option>
+                        <option value="Recheck">Recheck</option>
                         <option value="Completed">Completed</option>
                         <option value="On-Going">On-Going</option>
                         <option value="On-Hold">On-Hold</option>
