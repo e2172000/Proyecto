@@ -14,89 +14,101 @@ function StatusModal({
     editStatus,
     setEditStatus,
     user,
-    setUpdate
+    setUpdate,
     }) {
     //creamos la funcion para editar restaurantes desde el modal
     function editStatusModal() {
 
-        //obtener la informacion del formulario del modal
-        const status = document.getElementById("status").value;
-        const unique_id = restaurantState.unique_id;
-
-        //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
-        const infoRestaurant = { status, unique_id };
-        //con la informacion almacenada en un objeto podemos correr la funcion de addRestaurant
-        editStat(infoRestaurant, user.email);
+          //enviar la informacion a firebase dentro de un objeto para que la reciba editRes
+          const infoRestaurant = {name: restaurantState?.name, address: restaurantState?.address, link: restaurantState?.link, image: restaurantState?.image, breakfast: restaurantState?.breakfast, lunch: restaurantState?.lunch, hours: restaurantState?.hours, status: restaurantState?.status,unique_id: restaurantState?.unique_id}         //con la informacion almacenada en un objeto podemos correr la funcion de editRestaurant
+          editStat(infoRestaurant, user.email);
+          //regresar el estado a null para que este vacio en caso de querer volver a editar 
+          setEditStatus(null);
+          //actualizamos el estado de los datos de  la bd para que al agregar un restaurante desde el modal se actualize y lo muestre en pantalla 
+          updateStateProducts();
+          //cerrar el modal
+          setIsStatusModal(false);
+          setUpdate(true);
         //regresar el estado a null para que este vacio en caso de querer volver a editar 
         setEditStatus(null);
         //actualizamos el estado de los datos de  la bd para que al agregar un restaurante desde el modal se actualize y lo muestre en pantalla 
         updateStateProducts();
         //cerrar el modal
-        setIsStatusModal(false);
+        setEditStatus(false);
         setUpdate(true);
     }
+
 
     //creamos un estado para poder modificar el valor de cada uno de los campos 
     const [restaurantState, setRestaurantState] = React.useState({
         ...editStatus,
     });
 
+    console.log(restaurantState)
+
   return (
-    <Modal 
-        show={isStatusModal}
-        onHide={() => {
-            setIsStatusModal(false)  
-            setEditStatus(null);
-            }}>
-
-        <Modal.Header>
-            <Modal.Title>Change Restaurant Status</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-
-            <Form>
-                <Stack>
-
-                    <Form.Label>Menu Status:</Form.Label> 
-                    <Form.Control id='status' className="mb-1" as='select' value={restaurantState?.status} 
-                    onChange={ (e) =>{
-                        setRestaurantState({...restaurantState, status: e.target.value})
-                        }}>
-                        <option key = 'blankChoice' hidden value> Menu Status </option>
-                        <option value="Assigned">Assigned</option>
-                        <option value="Completed">Completed</option>
-                        <option value="On-Going">On-Going</option>
-                        <option value="On-Hold">On-Hold</option>
-                    </Form.Control>
-
-                </Stack>
-            </Form>
-
-        </Modal.Body>
-
-        <Modal.Footer>
-
-            <Button variant="secondary" onClick={() => {
-                setIsStatusModal(false)
+    <>
+    {isStatusModal && (
+            <Modal 
+            show={() =>
+            {isStatusModal()}}
+            onHide={() => {
+                setIsStatusModal(false)  
                 setEditStatus(null);
                 }}>
-                Cancel
-            </Button>
-
-            <Button variant="primary"
-                onClick={ () => {
-                    setUpdate(true)
-                    editStatusModal();
-                    updateStateProducts();     
-                }}
-            >
-                Edit
-            </Button>
-
-        </Modal.Footer>
-
-    </Modal>
+    
+            <Modal.Header>
+                <Modal.Title>Change Restaurant Status</Modal.Title>
+            </Modal.Header>
+    
+            <Modal.Body>
+    
+                <Form>
+                    <Stack>
+    
+                        <Form.Label>Menu Status:</Form.Label> 
+                        <Form.Control id='status' className="mb-1" as='select' value={restaurantState?.status} 
+                        onChange={ (e) =>{
+                            setRestaurantState({...restaurantState, status: e.target.value})
+                            }}>
+                            <option key = 'blankChoice' hidden value> Menu Status </option>
+                            <option value="Assigned">Assigned</option>
+                            <option value="Completed">Completed</option>
+                            <option value="On-Going">On-Going</option>
+                            <option value="On-Hold">On-Hold</option>
+                        </Form.Control>
+    
+                    </Stack>
+                </Form>
+    
+            </Modal.Body>
+    
+            <Modal.Footer>
+    
+                <Button variant="secondary" onClick={() => {
+                    setIsStatusModal(false)
+                    setEditStatus(null);
+                    }}>
+                    Cancel
+                </Button>
+    
+                <Button variant="primary"
+                    onClick={ () => {
+                        setUpdate(true)
+                        editStatusModal(false);
+                        updateStateProducts();  
+                    }}
+                >
+                    Edit
+                </Button>
+    
+            </Modal.Footer>
+    
+        </Modal>
+        )
+    }
+    
+    </>
   )
 }
 
