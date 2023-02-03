@@ -1,7 +1,9 @@
 import React from 'react'
+import './UserView.css'
+import logo_vistas from '../images/logo_vistas.png';
 
 //importamos estilos desde bootstrap
-import { Container, Stack, Form, Table, Button } from "react-bootstrap"
+import { Nav, Navbar, Container, Stack, Form, Table, Button } from "react-bootstrap"
 
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';
@@ -11,7 +13,15 @@ import ReactHtmlTableToExcel from 'react-html-table-to-excel';
 
 import StatusModal from './StatusModal';
 
+//importamos la funcion writeUserLog para escribir logs al cerrar sesion
+import writeUserLog from '../functions/writeUserLog';
 
+//importamos desde firebase
+import firebaseApp from '../firebase/credenciales';
+import { getAuth, signOut } from "firebase/auth";
+
+//inicializamos auth
+const auth = getAuth(firebaseApp);
 
 
 function UserView( {user} ) {
@@ -45,8 +55,20 @@ function UserView( {user} ) {
   }, []);
 
   return (
-
-    <Container fluid>
+    <>
+      <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand><img src={logo_vistas} alt="logo" width='20%' /></Navbar.Brand>
+          <Nav >
+            <button className='button-exit' onClick={() => {
+            writeUserLog("Sign Out", user.email);
+            signOut(auth);
+            }}>Sign Out</button>
+          </Nav>
+      </Container>
+      </Navbar>
+    
+      <Container fluid>
 
       { editStatus && (
         <StatusModal
@@ -61,22 +83,22 @@ function UserView( {user} ) {
       )}
 
       <Stack>
-        <p style={{ fontSize: 24}}> 
-          Hola user, { user.email }
+        <p className='saludos'> 
+          {`Hi! Welcome   ${user.email}`  }
         </p>
       </Stack>
 
-      <div>
+      <div className='userView'>
             <ReactHtmlTableToExcel 
                 id="downloadButton"
-                className="btn btn-success"
+                className="button-user"
                 table="restaurantList"
                 filename="RestaurantList"
                 sheet="San Marcos"
                 buttonText="Download Restaurant List"
             />
         </div>
-
+ 
       <hr />
 
       <Form.Group controlId='search' className='w-75 m-3'>
@@ -122,13 +144,13 @@ function UserView( {user} ) {
             <td>{restaurant.status}</td>
 
             <td>
-              <Button variant='dark' 
+              <button className='status' variant='dark' 
                 onClick={() =>  {
                   setEditStatus({ ...restaurant });
                   setIsStatusModal(true);
                   }
                 }>
-              Change Status</Button>
+              Change Status</button>
             </td>
 
           </tr>
@@ -138,6 +160,7 @@ function UserView( {user} ) {
 
 
     </Container>
+    </>
   )
 }
 

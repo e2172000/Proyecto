@@ -1,0 +1,71 @@
+.modal-title{
+    color: yellow;
+    font-family:  'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.modal-body{
+    background-color: black;
+    padding: 5px;
+}
+
+.body{
+    background-color: black;
+}
+
+.modal-body:hover{
+    border-color: yellow;
+    transform: scale(1.1,1.1);
+}
+
+.form-label{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    margin: 0px;
+}
+
+.form-control{
+    margin: 0px;
+}
+
+.modal-footer{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+
+.cancel{
+    border-color: rgba(300,49,51,255);
+    background-color: rgba(150,24,2,255);
+    border-radius: 8px;
+    width: 30%;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.cancel:hover{
+    transform: scale(1.1, 1.1)
+}
+
+.edit-modal{
+    border-color: rgba(300,49,51,255);
+    border-width: 5px;
+    background-color: yellow;
+    border-radius: 8px;
+    width: 30%;
+    height: 50px;
+    color: rgba(150,24,2,255);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.edit-modal:hover{
+    transform: scale(1.1, 1.1)
+}

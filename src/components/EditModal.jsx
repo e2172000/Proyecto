@@ -1,4 +1,5 @@
 import React from 'react'
+import './Modal.css'
 
 //importamos estilos desde bootstrap
 import { Modal, Stack, Form, Button } from "react-bootstrap";
@@ -71,14 +72,14 @@ function EditModal({
             setEditRestaurant(null);
             }}>
 
-        <Modal.Header>
+        <Modal.Header className='modal-title'>
             <Modal.Title>Edit Restaurant</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body className='modal-body'>
 
             <Form>
-                <Stack>
+                <Stack className='body'>
                     <Form.Label>Restaurant Name:</Form.Label>  
                     <Form.Control 
                         id="name" 
@@ -180,16 +181,9 @@ function EditModal({
 
         </Modal.Body>
 
-        <Modal.Footer>
+        <Modal.Footer className='modal-footer'>
 
-            <Button variant="secondary" onClick={() => {
-                setIsEditModal(false)
-                setEditRestaurant(null);
-                }}>
-                Cancel
-            </Button>
-
-            <Button variant="primary"
+            <button className='edit-modal' variant="primary"
                 onClick={ () => {
                     if ((validationText())){
                         setUpdate(true)
@@ -200,7 +194,14 @@ function EditModal({
                 }}}
             >
                 Edit
-            </Button>
+            </button>
+
+            <button className='cancel' variant="secondary" onClick={() => {
+                setIsEditModal(false)
+                setEditRestaurant(null);
+                }}>
+                Cancel
+            </button>
 
         </Modal.Footer>
 

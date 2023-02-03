@@ -1,4 +1,5 @@
 import React from 'react'
+import './Modal.css'
 
 //importamos estilos desde bootstrap
 import { Modal, Stack, Form, Button } from "react-bootstrap";
@@ -56,14 +57,14 @@ function StatusModal({
                 setEditStatus(null);
                 }}>
     
-            <Modal.Header>
+            <Modal.Header className='modal-title'>
                 <Modal.Title>Change Restaurant Status</Modal.Title>
             </Modal.Header>
     
-            <Modal.Body>
+            <Modal.Body className='modal-body'>
     
                 <Form>
-                    <Stack>
+                    <Stack className='body'>
     
                         <Form.Label>Menu Status:</Form.Label> 
                         <Form.Control id='status' className="mb-1" as='select' value={restaurantState?.status} 
@@ -82,16 +83,9 @@ function StatusModal({
     
             </Modal.Body>
     
-            <Modal.Footer>
+            <Modal.Footer className='modal-footer'>
     
-                <Button variant="secondary" onClick={() => {
-                    setIsStatusModal(false)
-                    setEditStatus(null);
-                    }}>
-                    Cancel
-                </Button>
-    
-                <Button variant="primary"
+                <button className='edit-modal' variant="primary"
                     onClick={ () => {
                         setUpdate(true)
                         editStatusModal(false);
@@ -99,7 +93,14 @@ function StatusModal({
                     }}
                 >
                     Edit
-                </Button>
+                </button>
+
+                <button className='cancel'  variant="secondary" onClick={() => {
+                    setIsStatusModal(false)
+                    setEditStatus(null);
+                    }}>
+                    Cancel
+                </button>
     
             </Modal.Footer>
     

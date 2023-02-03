@@ -1,4 +1,5 @@
 import React from 'react'
+import './Modal.css'
 
 //importamos estilos desde bootstrap
 import { Modal, Stack, Form, Button } from "react-bootstrap";
@@ -79,13 +80,13 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     onHide={() => setIsAddModal(false)  } >
 
     <Modal.Header>
-        <Modal.Title>Add new Restaurant</Modal.Title>
+        <Modal.Title className='modal-title'>Add new Restaurant</Modal.Title>
     </Modal.Header>
 
-    <Modal.Body>
+    <Modal.Body className='modal-body'>
 
         <Form>
-            <Stack>
+            <Stack className='body'>
                 <Form.Label>Restaurant Name:</Form.Label>
                 <Form.Control id="name" placeholder="Restaurant Name" type="text" className="mb-1"/>
 
@@ -149,13 +150,9 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
 
     </Modal.Body>
 
-    <Modal.Footer>
+    <Modal.Footer className='modal-footer'>
 
-        <Button variant="secondary" onClick={() => setIsAddModal(false)}>
-            Cancel
-        </Button>
-
-        <Button variant="primary"
+        <button className='edit-modal' variant="primary"
             onClick={ () => {
                 if ((validationText2()) && (validationSelect()) && (validationStatus())){
                     setUpdate(true)
@@ -170,7 +167,12 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
             }}}
         >
             Add
-        </Button>
+        </button>
+
+
+        <button className='cancel' variant="secondary" onClick={() => setIsAddModal(false)}>
+            Cancel
+        </button>
 
     </Modal.Footer>
 
