@@ -1,8 +1,6 @@
 import React from 'react';
 import './AdminView.css';
 
-
-
 //importamos estilos desde bootstrap
 import { Container, Stack, Form, Table } from "react-bootstrap"
 

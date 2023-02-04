@@ -3,7 +3,7 @@ import './UserView.css'
 import logo_vistas from '../images/logo_vistas.png';
 
 //importamos estilos desde bootstrap
-import { Nav, Navbar, Container, Stack, Form, Table, Button } from "react-bootstrap"
+import { Nav, Navbar, Container, Stack, Form, Table } from "react-bootstrap"
 
 //importamos la funcion de getAllRestaurants
 import getAllRestaurants from '../functions/getAllRestaurants';

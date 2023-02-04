@@ -14,11 +14,6 @@
     background-color: black;
 }
 
-.modal-body:hover{
-    border-color: yellow;
-    transform: scale(1.1,1.1);
-}
-
 .form-label{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 20px;

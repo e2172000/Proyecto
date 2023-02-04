@@ -2,7 +2,7 @@ import React from 'react'
 import './Modal.css'
 
 //importamos estilos desde bootstrap
-import { Modal, Stack, Form, Button } from "react-bootstrap";
+import { Modal, Stack, Form } from "react-bootstrap";
 
 //importamos la funcion de addRestaurant para usarla desde el modal
 import addRestaurant from "../functions/addRestaurant";

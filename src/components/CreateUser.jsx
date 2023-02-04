@@ -22,8 +22,6 @@ const firestore = getFirestore(firebaseApp);
 
 function CreateUser( {user} ) {
 
-  //const [isRegistrando, setIsRegistrando] = useState(false);
-
   async function registrarUsuario (email, password, rol) {
 
     //creamos al usuario y recibimos su informacion
