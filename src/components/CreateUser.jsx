@@ -44,6 +44,7 @@ function CreateUser( {user} ) {
 
   }
 
+  console.log(user)
 
   function submitHandler (e)  {
     e.preventDefault();
@@ -66,7 +67,7 @@ function CreateUser( {user} ) {
   return (
     <>
 
-    <NavAdmin/>
+    <NavAdmin user={user}/>
     <Stack>
         <p className='saludos'> 
           {user.email} 

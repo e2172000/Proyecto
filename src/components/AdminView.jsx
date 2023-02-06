@@ -55,7 +55,7 @@ function AdminView({ user }) {
     updateStateProducts();
     setEditRestaurant();
     setUpdate();
-  }, [])
+  }, [user])
 
   return (
     <Container fluid>

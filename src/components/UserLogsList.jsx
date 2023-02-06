@@ -23,7 +23,7 @@ function UserLogsList({ user }) {
 
     //guardar los usuarios de la base de datos en el estado users
     function updateStateUserLogs(){
-        getAllUserLogs().then((userLogs) => {
+         getAllUserLogs().then((userLogs) => {
             setUserLogs(userLogs);
         });
     }
@@ -31,8 +31,7 @@ function UserLogsList({ user }) {
     //al iniciar el componente llamamos a la funcion de actualizar el estado con los datos de la base de datos para mostrar en la tabla los usuarios de la base de datos
     React.useEffect(() => {
         updateStateUserLogs();
-    }, []);
-
+    }, [userLogs]);
 
   return (
     <Container fluid>

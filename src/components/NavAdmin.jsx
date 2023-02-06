@@ -28,25 +28,25 @@ return (
       <button className='button-exit' onClick={() => {
         writeUserLog("Sign Out", user.email);
         signOut(auth);
-      }}>Sign Out</button>
+      }}><Link to={`/`} className="link"> Sing Out</Link></button>
     </Nav>
   </Container>
 </Navbar>
       <Nav fill variant="tabs" defaultActiveKey="/home">
         <NavItem>
-        <button className="menu"><Link to={`/`} className="link"> Home </Link></button>
+        < Link to={`/`} className="menu"> Home </Link>
         </NavItem>
         <Nav.Item>
-          <button className="menu"><Link to={`/admin/create`} className="link"> Create New User </Link></button>
+          <Link to={`/admin/create`} className="menu" user={user}> Create New User </Link>
       </Nav.Item>
       <Nav.Item>
-          <button className="menu"><Link to={`/admin/UserList`} className="link"> User List </Link></button>
+          <Link to={`/admin/UserList`} className="menu"> User List </Link>
       </Nav.Item>
       <Nav.Item>
-        <button className="menu"><Link to={`/admin/restaurantLogsList`} className="link"> Restaurant Logs </Link></button>
+        <Link to={`/admin/restaurantLogsList`} className="menu"> Restaurant Logs </Link>
       </Nav.Item>
       <Nav.Item>
-        <button className="menu"><Link to={`/admin/userLogsList`} className="link"> Users Logs </Link></button>
+        <Link to={`/admin/userLogsList`} className="menu"> Users Logs </Link>
       </Nav.Item>
       </Nav>
       </>

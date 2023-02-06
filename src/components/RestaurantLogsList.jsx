@@ -32,7 +32,6 @@ function RestaurantLogsList({ user }) {
     React.useEffect(() => {
         updateStateRestaurantLogs();
     }, []);
-
     
   return (
     <Container fluid>

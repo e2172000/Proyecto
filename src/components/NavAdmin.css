@@ -1,23 +1,31 @@
 .menu{
-    border-color: rgba(300,49,51,255);
     background-color:rgba(300,49,51,255);
-    border-radius: 8px;
     width: 100%;
     height: 100%;
     color: white;
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 5px;
+    margin: 15px;
+    margin-bottom: 20px;
     text-decoration: none;
+    font-family: 'Arial Narrow Bold', sans-serif;
 }
 
 .link{
     text-decoration: none;
-    color: white;
+    color: black;
+    width: 100%;
+    height: 100%;
 }
 
 .link:hover{
+    border-color: black;
+    border: 5px;
     color: white;
+}
+
+.menu:hover{
+    color: yellow;
     border-color: black;
     border: 5px;
 }
