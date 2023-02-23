@@ -22,13 +22,14 @@
 
 .form-control{
     margin: 0px;
+    background-color: black;
 }
 
 .modal-footer{
+    margin: 10px;
     background-color: black;
     display: flex;
     flex-direction: column;
-    justify-content: left;
 }
 
 
@@ -42,6 +43,7 @@
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 5px;
+
 }
 
 .cancel:hover{
@@ -63,4 +65,17 @@
 
 .edit-modal:hover{
     transform: scale(1.1, 1.1)
+}
+
+.error{
+    font-weight: bold;
+    color: yellow;
+    padding-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+    background-color: black;
+}
+
+.section{
+    background-color: black;
 }

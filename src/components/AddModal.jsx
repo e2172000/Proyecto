@@ -43,6 +43,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     const [lunchValid, setLunchValid] = React.useState(false)
     const [hoursValid, setHoursValid] = React.useState(false)
     const [statusValid, setStatusValid] = React.useState(false)
+    const [error, setError] = React.useState('')
 
     //validamos que los campos contengan texto
     function validationText2() {
@@ -50,6 +51,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
         const name = document.getElementById("name").value;
         const address = document.getElementById("address").value;
         const link = document.getElementById("link").value;
+        setError('')
 
         if ((name.length>0) && (address.length>0) && (link.length>0)){
             return true
@@ -59,6 +61,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     }
     //Validamos que los campos seleccionables no esten vacios
     function validationSelect() {
+        setError('')
         if ((imageValid) && (breakfastValid) && (lunchValid) && (hoursValid)){
            return true
         } else {
@@ -67,6 +70,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     }
 
     function validationStatus() {
+        setError('')
         if ((statusValid)){
            return true
         } else {
@@ -75,7 +79,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     }
 
   return (
-    <Modal 
+    <Modal
     show={isAddModal}
     onHide={() => setIsAddModal(false)  } >
 
@@ -149,8 +153,11 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
         </Form>
 
     </Modal.Body>
-
+    <section className='section'>
     <Modal.Footer className='modal-footer'>
+
+ 
+      <div className='error'> {error} </div>
 
         <button className='edit-modal' variant="primary"
             onClick={ () => {
@@ -162,19 +169,23 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
                     setHoursValid(false)
                     setStatusValid(false)
                     addRestaurantModal()
+                    setError('')
                 }else{
-                    alert('Must Complete All Files')
+                    setError('Must Complete All Files')
             }}}
         >
             Add
         </button>
 
 
-        <button className='cancel' variant="secondary" onClick={() => setIsAddModal(false)}>
+        <button className='cancel' variant="secondary" onClick={() => {
+            setError('')
+            setIsAddModal(false)}}>
             Cancel
         </button>
 
     </Modal.Footer>
+    </section>
 
     </Modal>
   )

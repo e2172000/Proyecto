@@ -43,3 +43,11 @@
         font-size: 20px;
         margin-bottom: 100px ;
 }
+
+.error{
+    font-weight: bold;
+    color: yellow;
+    padding-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+}

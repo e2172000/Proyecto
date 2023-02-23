@@ -12,8 +12,12 @@ import loginEmailPassword from '../functions/loginEmailPassword';
 
 function Login() {
 
+  const [error, setError] = React.useState('')
+
   async function submitHandler (e)  {
     e.preventDefault();
+
+    setError('')
 
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
@@ -24,7 +28,7 @@ function Login() {
     const result = await loginEmailPassword(email, password);
 
     if (result.length>0){
-        alert(result)
+      setError(`${result}`)
     }
   }
  
@@ -49,6 +53,8 @@ function Login() {
       </Form.Group>
 
   <br/>
+
+      <div className='error'> {error} </div>
 
   <button className='button'
     type="submit"

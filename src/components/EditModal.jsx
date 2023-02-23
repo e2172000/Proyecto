@@ -48,6 +48,7 @@ function EditModal({
     const [restaurantState, setRestaurantState] = React.useState({
         ...editRestaurant,
     });
+    const [error, setError] = React.useState('')
 
     //validamos que los campos contengan texto
     function validationText() {
@@ -55,6 +56,7 @@ function EditModal({
         const name = document.getElementById("name").value;
         const address = document.getElementById("address").value;
         const link = document.getElementById("link").value;
+        setError('')
 
         if ((name.length>0) && (address.length>0) && (link.length>0)){
             return true
@@ -180,8 +182,10 @@ function EditModal({
             </Form>
 
         </Modal.Body>
-
+        <section className='section'>
         <Modal.Footer className='modal-footer'>
+
+        <div className='error'> {error} </div>
 
             <button className='edit-modal' variant="primary"
                 onClick={ () => {
@@ -189,8 +193,9 @@ function EditModal({
                         setUpdate(true)
                     editRestaurantModal();
                     updateStateProducts();
+                    setError('')
                     }else{
-                        alert('Must Complete All Files')
+                        setError('Must Complete All Files')
                 }}}
             >
                 Edit
@@ -198,13 +203,14 @@ function EditModal({
 
             <button className='cancel' variant="secondary" onClick={() => {
                 setIsEditModal(false)
+                setError('')
                 setEditRestaurant(null);
                 }}>
                 Cancel
             </button>
 
         </Modal.Footer>
-
+        </section>
     </Modal>
   )
 }
