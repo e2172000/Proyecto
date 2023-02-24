@@ -28,7 +28,16 @@ function Login() {
     const result = await loginEmailPassword(email, password);
 
     if (result.length>0){
-      setError(`${result}`)
+      if (`${result}` === 'Firebase: Error (auth/internal-error).') {
+        setError("Invalid Login Information, Please Check it and Try Again.")
+      } else if (`${result}` === 'Firebase: Error (auth/wrong-password).') {
+        setError("Wrong Password, Please Check it and Try Again.")
+      } else if (`${result}` === 'Firebase: Error (auth/user-not-found).') {
+        setError("User Not Found, Please Check it and Try Again.")
+      }else if (`${result}` === 'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).') {
+        setError("Access to This Account Has Been Temporarily Disabled Due to Many Failed Login Attempts, Please Contact with an Admin to Restore it.")
+      }
+      //setError(`${result}`)
     }
   }
  

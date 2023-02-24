@@ -22,7 +22,11 @@ const firestore = getFirestore(firebaseApp);
 
 function CreateUser( {user} ) {
 
+  const [error, setError] = React.useState('')
+
   async function registrarUsuario (email, password, rol) {
+
+    setError('')
 
     //creamos al usuario y recibimos su informacion
     const infoUsuario = await createUserWithEmailAndPassword(auth, email, password)
@@ -30,7 +34,14 @@ function CreateUser( {user} ) {
         return usuarioFirebase;
       })
       .catch((e) => {
-        alert(e.message)
+        if (e.message === "Firebase: Error (auth/invalid-email).") {
+          setError("Invalid Email, Please Check it and Try Again.")
+        } else if (e.message === "Firebase: Error (auth/email-already-in-use).") {
+          setError("Email Already in Use, Please Check it and Try Again.")
+        } else if (e.message === "Firebase: Password should be at least 6 characters (auth/weak-password).") {
+          setError("Password Should Be at Least 6 Characters, Please Check it and Try Again.")
+        }
+        //setError(e.message)
         return e.message
       });
 
@@ -101,7 +112,9 @@ function CreateUser( {user} ) {
           </Form.Select>
         </Form.Group>
 
+        <br/>
 
+        <div className='error'> {error} </div>
 
         <button
           className='button-create'
