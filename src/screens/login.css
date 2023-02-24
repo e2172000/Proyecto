@@ -46,8 +46,9 @@
 
 .error{
     font-weight: bold;
-    color: yellow;
+    color: white;
     padding-bottom: 10px;
     font-size: 18px;
     text-align: center;
+    background-color: rgba(239,49,51,255);
 }

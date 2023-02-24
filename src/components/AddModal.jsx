@@ -43,6 +43,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     const [lunchValid, setLunchValid] = React.useState(false)
     const [hoursValid, setHoursValid] = React.useState(false)
     const [statusValid, setStatusValid] = React.useState(false)
+    
     const [error, setError] = React.useState('')
 
     //validamos que los campos contengan texto
