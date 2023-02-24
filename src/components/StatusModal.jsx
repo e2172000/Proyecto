@@ -82,7 +82,8 @@ function StatusModal({
                 </Form>
     
             </Modal.Body>
-    
+            
+            <section className='section'>
             <Modal.Footer className='modal-footer'>
     
                 <button className='edit-modal' variant="primary"
@@ -103,6 +104,8 @@ function StatusModal({
                 </button>
     
             </Modal.Footer>
+
+            </section>
     
         </Modal>
         )

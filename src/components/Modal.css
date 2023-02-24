@@ -67,7 +67,7 @@
     transform: scale(1.1, 1.1)
 }
 
-.error{
+.errors{
     font-weight: bold;
     color: yellow;
     padding-bottom: 10px;

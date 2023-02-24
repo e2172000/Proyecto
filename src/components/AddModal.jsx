@@ -158,7 +158,7 @@ function AddModal({ isAddModal, setIsAddModal, updateStateProducts, user, setUpd
     <Modal.Footer className='modal-footer'>
 
  
-      <div className='error'> {error} </div>
+      <div className='errors'> {error} </div>
 
         <button className='edit-modal' variant="primary"
             onClick={ () => {
